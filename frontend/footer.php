@@ -1,4 +1,5 @@
-    <footer id="footer">
-        <!-- Footer content goes here -->
-    </footer>
-</body>
+        <footer id="footer">
+            <!-- Footer content goes here -->
+        </footer>
+    </body>
+</html>
