@@ -4,11 +4,13 @@ import (
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"time"
+    "fmt"
 )
 
 type Product struct {
 	Name     string
 	Quantity int
+    Price    int
 }
 
 type ProduceData struct {
@@ -23,6 +25,7 @@ func getProduce(c *gin.Context) {
 }
 
 func main() {
+    fmt.Println("❤️ ")
     // Instantiate the router
     r := gin.Default()
     // Define root endpoint
