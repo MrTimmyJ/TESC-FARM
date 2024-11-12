@@ -1,4 +1,28 @@
+/*Top navigation stylization*/
+.topnav {
+    background-color: #eec673;
+    overflow: hidden;
+}
 
+.topnav a {
+    float: right;
+    color: #3f5700;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 17px;
+}
+
+.topnav a:hover {
+    color: #f27800;
+}
+
+.topnav a.active {
+    color: #f50000
+}
+
+/*Style for text saying "Seasonal Spotlight"*/
 .sznspot {
     color: #3f5700;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -6,11 +30,15 @@
     
 }
 
-
 /*Circle picture frames for home*/
+.sgrid{
+    display: grid;
+    justify-content: space-around;
+    grid-template-columns: auto auto auto;
+}
 .seasonal {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     position: relative;
     overflow: hidden;
     border-radius: 50%;
