@@ -8,9 +8,14 @@
 
 
 /*Circle picture frames for home*/
+.sgrid{
+    display: grid;
+    justify-content: space-around;
+    grid-template-columns: auto auto auto;
+}
 .seasonal {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     position: relative;
     overflow: hidden;
     border-radius: 50%;
