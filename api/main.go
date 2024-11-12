@@ -2,19 +2,21 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-      "database/sql"
+	"gorm.io/driver/sqlite"
+	"gorm.io/gorm"
 	"net/http"
 	"time"
 )
 
-// GLOBAL VARIABLES (>^^)>
-var db *sql.DB
-var products []Product
+// GLOBAL VARIABLES
+var db *gorm.DB
 
+// STRUCTS & METHODS
 type Product struct {
+	gorm.Model
 	Name     string
-	Quantity int
-	Price    int
+	Quantity int // In inventory
+	Price    int // In cents
 }
 
 type ProduceData struct {
@@ -22,54 +24,46 @@ type ProduceData struct {
 	Products  []Product
 }
 
+// ENDPOINT FUNCTIONS
 func getProduce(c *gin.Context) {
-	data := ProduceData{}
-      rows, err := db.QueryRows("SELECT name, quantity FROM products;")
-      if err != nil {
-            panic(err.Error())
-      }
-      for rows.Next() {
-            p := Product{}
-            err := rows.Scan(&p.Name, &p.Quantity)
-            if err != nil {
-                  panic(err.Error())
-            }
-            data.Products = append(data.Products, p)
-      }
+	// Instantiate data
+    data := ProduceData{}
+    // Get data from DB
+    db.Find(&data.Products)
+    // Set retrieval time
 	data.Retrieved = time.Now()
+    // Return JSON
 	c.JSON(http.StatusOK, data)
 }
 
-func heart(c *gin.Context) {
-      c.Data(http.StatusOK, "text/html; charset=utf-8", []byte("❤️ "))
-}
-
+// For Jess
 func poop(c *gin.Context) {
-      c.Data(http.StatusOK, "text/html; charset=utf-8", []byte("💩"))
+	c.Data(http.StatusOK, "text/html; charset=utf-8", []byte("💩"))
 }
 
+// MAIN FUNCTION
 func main() {
-      products = []Product{
-            Product{Name: "Apple", Quantity: 10},
-            Product{Name: "Peach", Quantity: 5},
-            Product{Name: "Tomato", Quantity: 8},
-            Product{Name: "🍇", Quantity: 12},
-      }
-      var err error
-      db, err = sql.Open("sqlite3", "data.db")
+    // Connect to database
+	var err error
+	db, err = gorm.Open(sqlite.Open("data.db"), &gorm.Config{})
+    if err != nil {
+        panic("Database Connection Error: " + err.Error())
+    }
+    // Migrate ORM
+    db.AutoMigrate(&Product{})
 
 	// Instantiate the router
-      r := gin.Default()
+	r := gin.Default()
 	// Define root endpoint
 	r.GET("/", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
 			"status": "online",
 		})
 	})
-      r.GET("/heart", heart)
-      r.GET("/poop", poop)
+    // Define poop endpoint
+	r.GET("/poop", poop)
 	// Define produce endpoint
 	r.GET("/produce.json", getProduce)
-	// Run router on port 8080
+	// Run router on localhost, port 8080
 	r.Run("127.0.0.1:8080")
 }
