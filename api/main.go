@@ -27,12 +27,12 @@ type ProduceData struct {
 // ENDPOINT FUNCTIONS
 func getProduce(c *gin.Context) {
 	// Instantiate data
-    data := ProduceData{}
-    // Get data from DB
-    db.Find(&data.Products)
-    // Set retrieval time
+	data := ProduceData{}
+	// Get data from DB
+	db.Find(&data.Products)
+	// Set retrieval time
 	data.Retrieved = time.Now()
-    // Return JSON
+	// Return JSON
 	c.JSON(http.StatusOK, data)
 }
 
@@ -43,14 +43,14 @@ func poop(c *gin.Context) {
 
 // MAIN FUNCTION
 func main() {
-    // Connect to database
+	// Connect to database
 	var err error
 	db, err = gorm.Open(sqlite.Open("data.db"), &gorm.Config{})
-    if err != nil {
-        panic("Database Connection Error: " + err.Error())
-    }
-    // Migrate ORM
-    db.AutoMigrate(&Product{})
+	if err != nil {
+		panic("Database Connection Error: " + err.Error())
+	}
+	// Migrate ORM
+	db.AutoMigrate(&Product{})
 
 	// Instantiate the router
 	r := gin.Default()
@@ -60,7 +60,7 @@ func main() {
 			"status": "online",
 		})
 	})
-    // Define poop endpoint
+	// Define poop endpoint
 	r.GET("/poop", poop)
 	// Define produce endpoint
 	r.GET("/produce.json", getProduce)
