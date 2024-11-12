@@ -16,7 +16,7 @@ type ProduceData struct {
 	Products  []Product
 }
 
-func produce(c *gin.Context) {
+func getProduce(c *gin.Context) {
 	data := ProduceData{}
 	c.JSON(http.StatusOK, data)
 }
@@ -28,6 +28,6 @@ func main() {
 			"status": "online",
 		})
 	})
-	r.GET("/produce.json", produce)
+	r.GET("/produce.json", getProduce)
 	r.Run("127.0.0.1:8080")
 }
