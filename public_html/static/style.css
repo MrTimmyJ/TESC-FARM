@@ -54,3 +54,26 @@
     height: 100%;
     width: auto;
 }
+
+/*hero image November ad stylization*/
+.novemberad {
+    padding-top: 50px;
+}
+
+/*Highlight buttons*/
+.button {
+    border: none;
+    color: white;
+    background-color: #3f5700;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 24px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin: 4px 20px;
+}
+
+.button:hover {
+    background-color: #eec673;
+}
