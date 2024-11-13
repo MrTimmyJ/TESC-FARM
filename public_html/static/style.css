@@ -4,6 +4,7 @@
     overflow: hidden;
 }
 
+
 .topnav a {
     float: right;
     color: #3f5700;
@@ -21,6 +22,8 @@
 .topnav a.active {
     color: #f50000
 }
+
+
 
 /*Style for text saying "Seasonal Spotlight"*/
 .sznspot {
