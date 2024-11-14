@@ -99,6 +99,27 @@
     color: #3f5700;
 }
 
+.footerbox {
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+h3 {
+color: #3f5700;
+}
+.bottom {
+font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+border: none;
+color: #3f5700;
+font-size: 25px;
+text-decoration: none;
+background-color: #f4f4f4;
+}
+
+.bottom:hover {
+color:#f27800;
+}
 
 
 
