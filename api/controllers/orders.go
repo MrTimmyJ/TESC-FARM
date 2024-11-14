@@ -1,4 +1,4 @@
-// controllers/products.go
+// controllers/orders.go
 
 package controllers
 
