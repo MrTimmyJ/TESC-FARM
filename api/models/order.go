@@ -14,6 +14,5 @@ type OrderItem struct {
 
 type Order struct {
 	ID uint   `json:"id" gorm:"primary_key"`
-	Items OrderItem[]
-	Retrieved time.Time
+	Items []OrderItem `json:"items"`
 }
