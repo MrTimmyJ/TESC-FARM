@@ -47,6 +47,7 @@
 
 /*Style for text saying "Seasonal Spotlight"*/
 .sznspot {
+    text-align: center;
     color: #f27800;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 50px;
@@ -248,7 +249,7 @@ body {
 
 .product-card .add-to-cart-button {
     padding: 10px 20px;
-    background-color: #00bfff;
+    background-color: #f27800;
     color: white;
     border: none;
     border-radius: 25px;
@@ -258,6 +259,6 @@ body {
 }
 
 .product-card .add-to-cart-button:hover {
-    background-color: #007bb5;
+    background-color: #f27800;
     transform: scale(1.05);
 }
