@@ -3,21 +3,21 @@
 package controllers
 
 import (
-"net/http"
+	"net/http"
 
-"github.com/gin-gonic/gin"
-"github.com/Acstrayer/TESCSE-Ecom/api/models"
-"time"
+	"github.com/Acstrayer/TESCSE-Ecom/api/models"
+	"github.com/gin-gonic/gin"
+	"time"
 )
 
 type CreateProductInput struct {
-	Name  string `json:"name" binding:"required"`
-	Type string `json:"type" binding:"required"`
+	Name        string `json:"name" binding:"required"`
+	Type        string `json:"type" binding:"required"`
 	Description string `json:"description" binding:"required"`
-  	Image       string `json:"image" binding:"required"`
-	Quantity uint `json:"quantity" binding:"required"`
-	Price int `json:"price" binding:"required"`
-	PLU      int    `json:"plu" bindig:"required"`
+	Image       string `json:"image" binding:"required"`
+	Quantity    uint   `json:"quantity" binding:"required"`
+	Price       int    `json:"price" binding:"required"`
+	PLU         int    `json:"plu" bindig:"required"`
 }
 
 // GET /products
@@ -37,28 +37,28 @@ func CreateProduct(c *gin.Context) {
 	// Validate input
 	var input CreateProductInput
 	if err := c.ShouldBindJSON(&input); err != nil {
-	  c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-	  return
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
 	}
-  
+
 	// Create product
 	product := models.Product{Name: input.Name, Type: input.Type, Description: input.Description,
-							Image: input.Image, Quantity: input.Quantity, Price: input.Price, 
-							PLU: input.PLU}
+		Image: input.Image, Quantity: input.Quantity, Price: input.Price,
+		PLU: input.PLU}
 	models.DB.Create(&product)
-  
+
 	c.JSON(http.StatusOK, gin.H{"data": product})
 }
 
 func FindProduct(c *gin.Context) {
 	var product models.Product
 
-  	if err := models.DB.Where("id = ?", c.Param("id")).First(&product).Error; err != nil {
-    	c.JSON(http.StatusBadRequest, gin.H{"error": "Record not found!"})
-    	return
-  }
+	if err := models.DB.Where("id = ?", c.Param("id")).First(&product).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Record not found!"})
+		return
+	}
 
-  	c.JSON(http.StatusOK, gin.H{"data": product})
+	c.JSON(http.StatusOK, gin.H{"data": product})
 }
 
 func UpdateProduct(c *gin.Context) {
