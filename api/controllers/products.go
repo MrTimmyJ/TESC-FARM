@@ -13,8 +13,11 @@ import (
 type CreateProductInput struct {
 	Name  string `json:"name" binding:"required"`
 	Type string `json:"type" binding:"required"`
+	Description string `json:"description" binding:"required"`
+  	Image       string `json:"image" binding:"required"`
 	Quantity uint `json:"quantity" binding:"required"`
 	Price int `json:"price" binding:"required"`
+	PLU      int    `json:"plu" bindig:"required"`
 }
 
 // GET /products
@@ -39,7 +42,9 @@ func CreateProduct(c *gin.Context) {
 	}
   
 	// Create product
-	product := models.Product{Name: input.Name, Type: input.Type, Quantity: input.Quantity, Price: input.Price}
+	product := models.Product{Name: input.Name, Type: input.Type, Description: input.Description,
+							Image: input.Image, Quantity: input.Quantity, Price: input.Price, 
+							PLU: input.PLU}
 	models.DB.Create(&product)
   
 	c.JSON(http.StatusOK, gin.H{"data": product})
