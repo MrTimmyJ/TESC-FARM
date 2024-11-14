@@ -2,34 +2,13 @@ package main
 
 import (
       "github.com/gin-gonic/gin"
+	  "github.com/Acstrayer/TESCSE-Ecom/tree/main/api/models"
+	  "github.com/Acstrayer/TESCSE-Ecom/tree/main/api/controllers"
       "gorm.io/driver/sqlite"
       "gorm.io/gorm"
       "net/http"
       "time"
 )
-
-// GLOBAL VARIABLES
-var db *gorm.DB
-
-// STRUCTS & METHODS
-
-
-type ProduceData struct {
-      Retrieved time.Time
-      Products  []Product
-}
-
-// ENDPOINT FUNCTIONS
-func getProduce(c *gin.Context) {
-      // Instantiate data
-      data := ProduceData{}
-      // Get data from DB
-      db.Find(&data.Products)
-      // Set retrieval time
-      data.Retrieved = time.Now()
-      // Return JSON
-      c.JSON(http.StatusOK, data)
-}
 
 // For Jess; from austin: excuse me?
 func poop(c *gin.Context) {
@@ -43,7 +22,6 @@ func main() {
 
 	r.GET("/poop", poop)
 	r.GET("/products", controllers.FindProducts) //All products
-	r.GET("/produce", controllers.FindProduce) //Products, type: produce
 	r.POST("/products", controllers.CreateProduct)
 	r.GET("/products/:id", controllers.FindProduct)
 	r.PATCH("/products/:id", controllers.UpdateProduct)
