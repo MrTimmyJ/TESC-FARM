@@ -10,9 +10,17 @@
 }
 
 .logo img {
-    height: 50px; 
+    height: 125px; 
     width: auto;
     display: block;
+    
+}
+
+.name {
+    color:#3f5700;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 40px;
+    text-align: center;
 }
 
 .nav-links {
@@ -27,7 +35,7 @@
     text-align: center;
     padding: 10px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 17px;
+    font-size: 20px;
     text-decoration: none;
 }
 
@@ -44,7 +52,7 @@
 
 /*Style for text saying "Seasonal Spotlight"*/
 .sznspot {
-    color: #3f5700;
+    color: #f27800;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 50px;
     
@@ -88,11 +96,12 @@
     display: inline-block;
     font-size: 24px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    margin: 4px 20px;
+    margin: 10px;
 }
 
 .button:hover {
     background-color: #eec673;
+    color: #3f5700;
 }
 
 
@@ -106,6 +115,18 @@
 
 
 /***********************************************************About page*********************************************************/
+
+.values {
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 50px;
+    color: #81cc97;
+}
+
+h2 {
+    color:#81cc97;
+    font-size: 30px;
+}
 
 * {
     box-sizing: border-box;
@@ -130,6 +151,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    padding-top: 20px;
 }
 
 .row {
