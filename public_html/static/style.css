@@ -1,29 +1,46 @@
+
+
 /*Top navigation stylization*/
 .topnav {
     background-color: #eec673;
-    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
 }
 
+.logo img {
+    height: 50px; 
+    width: auto;
+    display: block;
+}
 
-.topnav a {
-    float: right;
+.nav-links {
+    display: flex; 
+    gap: 20px;     
+    list-style-type: none;
+}
+
+.nav-links a {
+    display: inline-block;
     color: #3f5700;
     text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
+    padding: 10px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 17px;
+    text-decoration: none;
 }
 
-.topnav a:hover {
+.nav-links a:hover {
     color: #f27800;
 }
 
-.topnav a.active {
+.nav-links a.active {
     color: #f50000
 }
 
 
+/**********************************************************Home Page*********************************************************/
 
 /*Style for text saying "Seasonal Spotlight"*/
 .sznspot {
@@ -76,4 +93,73 @@
 
 .button:hover {
     background-color: #eec673;
+}
+
+
+
+
+
+
+
+
+
+
+
+/***********************************************************About page*********************************************************/
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+.about-section {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+}
+
+.column {
+    flex: 1;
+    min-width: 300px;
+}
+
+.image-column img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.text-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .row, .reverse-row {
+        flex-direction: column;
+    }
 }
