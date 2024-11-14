@@ -12,12 +12,7 @@ import (
 var db *gorm.DB
 
 // STRUCTS & METHODS
-type Product struct {
-      gorm.Model
-      Name     string
-      Quantity int // In inventory
-      Price    int // In cents
-}
+
 
 type ProduceData struct {
       Retrieved time.Time
@@ -36,34 +31,26 @@ func getProduce(c *gin.Context) {
       c.JSON(http.StatusOK, data)
 }
 
-// For Jess
+// For Jess; from austin: excuse me?
 func poop(c *gin.Context) {
       c.Data(http.StatusOK, "text/html; charset=utf-8", []byte("💩"))
 }
 
-// MAIN FUNCTION
 func main() {
-      // Connect to database
-      var err error
-      db, err = gorm.Open(sqlite.Open("data.db"), &gorm.Config{})
-      if err != nil {
-            panic("Database Connection Error: " + err.Error())
-      }
-      // Migrate ORM
-      db.AutoMigrate(&Product{})
+	// ...
+	r := gin.Default()
+	models.ConnectDatabase()
 
-      // Instantiate the router
-      r := gin.Default()
-      // Define root endpoint
-      r.GET("/", func(c *gin.Context) {
-            c.JSON(http.StatusOK, gin.H{
-                  "status": "online",
-            })
-      })
-      // Define poop endpoint
-      r.GET("/poop", poop)
-      // Define produce endpoint
-      r.GET("/produce.json", getProduce)
-      // Run router on localhost, port 8080
-      r.Run("127.0.0.1:8080")
+	r.GET("/poop", poop)
+	r.GET("/products", controllers.FindProducts) //All products
+	r.GET("/produce", controllers.FindProduce) //Products, type: produce
+	r.POST("/products", controllers.CreateProduct)
+	r.GET("/products/:id", controllers.FindProduct)
+	r.PATCH("/products/:id", controllers.UpdateProduct)
+	r.DELETE("/products/:id", controllers.DeleteProduct) 
+
+	err := r.Run("127.0.0.1:8080")
+	if err != nil {
+			panic("Could not run the database.")
+	}
 }
