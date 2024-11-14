@@ -21,7 +21,11 @@ type CreateProductInput struct {
 // Get all products
 func FindProducts(c *gin.Context) {
 	prd := new(models.ProductRequestData)
-	models.DB.Find(&prd.Products)
+	if c.Query("name") != "" {
+		models.DB.Where("name = ?", c.Query("name")).Find(&prd.Products)
+	} else {
+		models.DB.Find(&prd.Products)
+	}
 	prd.Retrieved = time.Now()
 	c.JSON(http.StatusOK, prd)
 }
@@ -42,7 +46,14 @@ func CreateProduct(c *gin.Context) {
 }
 
 func FindProduct(c *gin.Context) {
+	var product models.Product
 
+  	if err := models.DB.Where("id = ?", c.Param("id")).First(&product).Error; err != nil {
+    	c.JSON(http.StatusBadRequest, gin.H{"error": "Record not found!"})
+    	return
+  }
+
+  	c.JSON(http.StatusOK, gin.H{"data": product})
 }
 
 func UpdateProduct(c *gin.Context) {

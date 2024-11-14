@@ -18,8 +18,3 @@ type Product struct {
 	Quantity uint   `json:"quantity`
 	Price    int    `json: price` //In pennies
 }
-
-type CreateProductInput struct {
-	Title  string `json:"title" binding:"required"`
-	Author string `json:"author" binding:"required"`
-}
