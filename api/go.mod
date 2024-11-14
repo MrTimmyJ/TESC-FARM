@@ -1,4 +1,4 @@
-module github.com/Acstrayer/TESCSE-Ecom
+module github.com/Acstrayer/TESCSE-Ecom/api
 
 go 1.23.2
 

@@ -8,7 +8,7 @@ import (
 "net/http"
 
 "github.com/gin-gonic/gin"
-"github.com/Acstrayer/TESCSE-Ecom/tree/main/api/models"
+"github.com/Acstrayer/TESCSE-Ecom/api/models"
 )
 
 // GET /products
@@ -32,5 +32,5 @@ func UpdateProduct(c *gin.Context) {
 }
 
 func DeleteProduct(c *gin.Context) {
-	
+
 }

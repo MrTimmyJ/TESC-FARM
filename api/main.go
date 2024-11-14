@@ -2,8 +2,8 @@ package main
 
 import (
       "github.com/gin-gonic/gin"
-	  "github.com/Acstrayer/TESCSE-Ecom/tree/main/api/models"
-	  "github.com/Acstrayer/TESCSE-Ecom/tree/main/api/controllers"
+	  "github.com/Acstrayer/TESCSE-Ecom/api/models"
+	  "github.com/Acstrayer/TESCSE-Ecom/api/controllers"
       "gorm.io/driver/sqlite"
       "gorm.io/gorm"
       "net/http"
