@@ -286,13 +286,13 @@ button {
     padding: 5px 10px;
     border: none;
     border-radius: 5px;
-    background-color: #28a745;
+    background-color: #3f5700;
     color: white;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #218838;
+    background-color: #3f5700;
 }
 
 #cart-modal {
