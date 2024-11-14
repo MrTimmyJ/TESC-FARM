@@ -2,6 +2,7 @@
 r.GET("/products/:id", controllers.FindProduct)
 	r.PATCH("/products/:id", controllers.UpdateProduct)
 	r.DELETE("/products/:id", controllers.DeleteProduct) 
+	
 package controllers
 
 import (
