@@ -2,7 +2,6 @@
 
 /*Top navigation stylization*/
 .topnav {
-    background-color: #eec673;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -16,12 +15,6 @@
     
 }
 
-.name {
-    color:#3f5700;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 40px;
-    text-align: center;
-}
 
 .nav-links {
     display: flex; 
