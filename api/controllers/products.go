@@ -23,9 +23,9 @@ type CreateProductInput struct {
 func FindProducts(c *gin.Context) {
 	prd := new(models.ProductRequestData)
 	if c.Query("name") != "" {
-		models.DB.Where("name = ?", c.Query("name")).Find(prd.Products)
+		models.DB.Where("name = ?", c.Query("name")).Find(&prd.Products)
 	} else {
-		models.DB.Find(prd.Products)
+		models.DB.Find(&prd.Products)
 	}
 	prd.Retrieved = time.Now()
 	c.JSON(http.StatusOK, prd)

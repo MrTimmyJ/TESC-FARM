@@ -17,6 +17,10 @@ type CreateOrderInput struct {
 	Items []CreateOrderItem `json:"items" binding:"required"`
 }
 
+func FindOrders(c *gin.Context) {
+
+}
+
 func CreateOrder(c *gin.Context) {
 	// Validate input
 	input := new(CreateOrderInput)
@@ -25,15 +29,20 @@ func CreateOrder(c *gin.Context) {
 		return
 	}
 
-	// Post order
-	order := models.Order{}
-	for line := range input.Items {
-		models.DB.Where("id = ?", line.ProductID) // Fix later
+	// Create Order items, store in Order
+	order := new(models.Order)
+	for _, line := range input.Items {
+		product := new(models.Product)
+		models.DB.Where("id = ?", line.ProductID).First(product)
 		item := models.OrderItem{}
+		item.Quantity = line.Quantity
+		item.Price = product.Price //Price at time of sale
+		item.Product = product
+		item.ProductID = product.ID
 		order.Items = append(order.Items, item)
 	}
-	order := models.Order{Items: input.Items}
-	models.DB.Create(&order)
+	//Insert Order
+	models.DB.Create(order)
 
 	c.JSON(http.StatusOK, gin.H{"data": order})
 }

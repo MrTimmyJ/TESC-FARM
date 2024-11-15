@@ -18,7 +18,6 @@ func Check(e error, m string) {
 }
 
 func ConnectDatabase() {
-
 	// Connect to the database
 	database, err := gorm.Open(sqlite.Open("data.db"), &gorm.Config{})
 	Check(err, "Database connection error")
@@ -26,6 +25,9 @@ func ConnectDatabase() {
 	// Migrate product definition to database
 	err = database.AutoMigrate(&Product{})
 	Check(err, "Product migration error")
+
+	err = database.AutoMigrate(&OrderItem{})
+	Check(err, "Order migration error")
 
 	// Migrate order definition to database
 	err = database.AutoMigrate(&Order{})

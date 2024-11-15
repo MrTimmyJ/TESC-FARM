@@ -6,8 +6,10 @@ type OrderItem struct {
 	ID        int `json:"id" gorm:"primary_key"`
 	Quantity  int `json:"quantity"`
 	Price     int `json:"price"` //in pennies
-	ProductID int `json:"product" gorm:"foreignKey:ID"`
-	OrderID   int `json:"order_id"`
+	Product   *Product `json:"product"`
+	ProductID uint `json:"product_id"`
+	Order     *Order `json:"order"`
+	OrderID   uint`json:"order_id"`
 }
 
 // Method for getting subtotal
