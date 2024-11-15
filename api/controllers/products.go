@@ -23,9 +23,9 @@ type CreateProductInput struct {
 func FindProducts(c *gin.Context) {
 	prd := new(models.ProductRequestData)
 	if c.Query("name") != "" {
-		models.DB.Where("name = ?", c.Query("name")).Find(&prd.Products)
+		models.DB.Where("name = ?", c.Query("name")).Find(prd.Products)
 	} else {
-		models.DB.Find(&prd.Products)
+		models.DB.Find(prd.Products)
 	}
 	prd.Retrieved = time.Now()
 	c.JSON(http.StatusOK, prd)
@@ -33,7 +33,7 @@ func FindProducts(c *gin.Context) {
 
 func CreateProduct(c *gin.Context) {
 	// Validate input
-    input := new(CreateProductInput)
+	input := new(CreateProductInput)
 	if err := c.ShouldBindJSON(input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return

@@ -3,10 +3,11 @@
 package models
 
 type OrderItem struct {
-    ID       int `json:"id" gorm:"primary_key"`
-    Quantity int `json:"quantity"`
-    Price    int `json:"price"` //in pennies
-    OrderID  int `json:"order_id"`
+	ID        int `json:"id" gorm:"primary_key"`
+	Quantity  int `json:"quantity"`
+	Price     int `json:"price"` //in pennies
+	ProductID int `json:"product" gorm:"foreignKey:ID"`
+	OrderID   int `json:"order_id"`
 }
 
 // Method for getting subtotal

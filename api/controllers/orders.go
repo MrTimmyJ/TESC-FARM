@@ -8,9 +8,13 @@ import (
 	"net/http"
 )
 
+type CreateOrderItem struct {
+	Quantity  int `json:"quantity" binding:"required"`
+	ProductID int `json:"product" binding:"required"`
+}
+
 type CreateOrderInput struct {
-	ID    uint        `json:"id" binding:"required"`
-	Items []models.OrderItem `json:"items" binding:"required"`
+	Items []CreateOrderItem `json:"items" binding:"required"`
 }
 
 func CreateOrder(c *gin.Context) {
@@ -22,6 +26,12 @@ func CreateOrder(c *gin.Context) {
 	}
 
 	// Post order
+	order := models.Order{}
+	for line := range input.Items {
+		models.DB.Where("id = ?", line.ProductID) // Fix later
+		item := models.OrderItem{}
+		order.Items = append(order.Items, item)
+	}
 	order := models.Order{Items: input.Items}
 	models.DB.Create(&order)
 
