@@ -7,13 +7,13 @@ import (
 	"net/http"
 )
 
-// For Jess; from austin: excuse me?
+// For Jess; from Austin: excuse me?
 func poop(c *gin.Context) {
 	c.Data(http.StatusOK, "text/html; charset=utf-8", []byte("💩"))
 }
 
 func main() {
-	// ...
+	// Initialize the router and static routes
 	r := gin.Default()
 	models.ConnectDatabase()
 	r.GET("/", poop)
@@ -30,7 +30,5 @@ func main() {
 	r.POST("/orders/new", controllers.CreateOrder)
 
 	err := r.Run("127.0.0.1:8080")
-	if err != nil {
-		panic("Could not run the database.")
-	}
+	models.check(err, "Error starting API")
 }

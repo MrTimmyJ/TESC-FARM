@@ -3,7 +3,7 @@
 package controllers
 
 type CreateOrderInput struct {
-	ID uint   `json:"id" binding:"required"`
+	ID    uint        `json:"id" binding:"required"`
 	Items []OrderItem `json:"items" binding:"required"`
 }
 
