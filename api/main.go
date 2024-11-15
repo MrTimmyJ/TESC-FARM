@@ -30,5 +30,5 @@ func main() {
 	r.POST("/orders/new", controllers.CreateOrder)
 
 	err := r.Run("127.0.0.1:8080")
-	models.check(err, "Error starting API")
+	models.Check(err, "Error starting API")
 }

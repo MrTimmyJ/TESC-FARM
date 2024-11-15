@@ -33,8 +33,8 @@ func FindProducts(c *gin.Context) {
 
 func CreateProduct(c *gin.Context) {
 	// Validate input
-	var input CreateProductInput
-	if err := c.ShouldBindJSON(&input); err != nil {
+    input := new(CreateProductInput)
+	if err := c.ShouldBindJSON(input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
