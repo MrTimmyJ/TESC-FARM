@@ -29,3 +29,4 @@ type Order struct {
 type OrderRequestData struct {
 	Order Order
 	Retreived time.Time
+}
