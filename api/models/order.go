@@ -2,6 +2,10 @@
 
 package models
 
+import (
+	"time"
+)
+
 type OrderItem struct {
 	ID        int `json:"id" gorm:"primary_key"`
 	Quantity  int `json:"quantity"`
@@ -21,3 +25,7 @@ type Order struct {
 	ID    uint        `json:"id" gorm:"primary_key"`
 	Items []OrderItem `json:"items" gorm:"foreignKey:OrderID"`
 }
+
+type OrderRequestData struct {
+	Order Order
+	Retreived time.Time
