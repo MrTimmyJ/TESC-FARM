@@ -18,8 +18,14 @@ type CreateOrderInput struct {
 }
 
 func FindOrders(c *gin.Context) {
-  orders := []models.Order{}
-	c.JSON(http.StatusOK, gin.H{"data": orders})
+	ordersData := new(models.OrderRequestData)
+	if c.Query("orderID") != "" {
+		models.DB.Where("orderID = ?", c.Query("OrderID")).Find(&ordersData.Orders)
+	} else {
+		models.DB.Find(&ordersData.Orders)
+	}
+	ordersData.Retrieved = time.Now()
+	c.JSON(http.StatusOK, ordersData)
 }
 
 func CreateOrder(c *gin.Context) {
