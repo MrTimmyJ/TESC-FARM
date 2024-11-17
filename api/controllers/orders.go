@@ -6,7 +6,6 @@ import (
 	"github.com/Acstrayer/TESCSE-Ecom/api/models"
 	"github.com/gin-gonic/gin"
 	"net/http"
-	"time"
 )
 
 type CreateOrderItem struct {
@@ -19,8 +18,7 @@ type CreateOrderInput struct {
 }
 
 func FindOrders(c *gin.Context) {
-	
-
+  orders := []models.Order{}
 	c.JSON(http.StatusOK, gin.H{"data": orders})
 }
 

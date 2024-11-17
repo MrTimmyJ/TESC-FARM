@@ -80,6 +80,9 @@
 .novemberad {
     padding-top: 50px;
 }
+.novemberad img {
+  max-width: 100%;
+}
 
 /*Highlight buttons*/
 .button {
