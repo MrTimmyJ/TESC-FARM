@@ -27,6 +27,6 @@ type Order struct {
 }
 
 type OrderRequestData struct {
-	Order Order[]
+	Order []Order
 	Retreived time.Time
 }
