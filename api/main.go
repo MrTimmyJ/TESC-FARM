@@ -30,6 +30,6 @@ func main() {
 	r.GET("/orders", controllers.FindOrders)
 	r.POST("/orders/new", controllers.CreateOrder)
 
-	err := r.Run("0.0.0.0:8080")
+	err := r.Run("0.0.0.0:8079")
 	models.Check(err, "Error starting API")
 }
