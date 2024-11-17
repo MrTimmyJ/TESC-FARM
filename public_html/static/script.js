@@ -1,5 +1,5 @@
 // Sample cart data (this would be loaded from a backend or database in a real application)
-let api = 'localhost:8080';
+let api = 'tesc.farm/api';
 let cart = [
     { id: 1, name: "Product 1", price: 10.00, quantity: 1 },
     { id: 2, name: "Product 2", price: 15.00, quantity: 1 }
