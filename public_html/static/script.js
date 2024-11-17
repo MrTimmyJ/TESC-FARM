@@ -1,4 +1,5 @@
 // Sample cart data (this would be loaded from a backend or database in a real application)
+let api = 'localhost:8080';
 let cart = [
     { id: 1, name: "Product 1", price: 10.00, quantity: 1 },
     { id: 2, name: "Product 2", price: 15.00, quantity: 1 }
@@ -47,7 +48,22 @@ function updateCartSummary() {
 // Checkout function
 function checkout() {
     alert("Proceeding to checkout with a total of $" + 
-          cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2));
+        cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2));
+    // Send cart data to api
+    fetch(api+'/orders/new', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(cart)
+    }).then(response => {
+        // Handle api response
+        if (!response.ok) {
+            alert("Error placing order.");
+            console.log(response);
+        }
+        alert("Order placed successfully.");
+    });
     cart = []; // Clear the cart after checkout
     renderCart();
 }
