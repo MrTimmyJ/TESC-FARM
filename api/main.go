@@ -16,19 +16,19 @@ func main() {
 	// Initialize the router and static routes
 	r := gin.Default()
 	models.ConnectDatabase()
-	r.GET("/", poop)
-	r.GET("/poop", poop)
+	r.GET("/api/", poop)
+	r.GET("/api/poop", poop)
 
 	//Product endpoints
-	r.GET("/products", controllers.FindProducts)
-	r.POST("/products/new", controllers.CreateProduct)
-	r.GET("/product/:id", controllers.FindProduct)
-	r.PATCH("/product/:id/update", controllers.UpdateProduct)
-	r.DELETE("/product/:id/delete", controllers.DeleteProduct)
+	r.GET("/api/products", controllers.FindProducts)
+	r.POST("/api/products/new", controllers.CreateProduct)
+	r.GET("/api/product/:id", controllers.FindProduct)
+	r.PATCH("/api/product/:id/update", controllers.UpdateProduct)
+	r.DELETE("/api/product/:id/delete", controllers.DeleteProduct)
 
 	//Order endpoints
-	r.GET("/orders", controllers.FindOrders)
-	r.POST("/orders/new", controllers.CreateOrder)
+	r.GET("/api/orders", controllers.FindOrders)
+	r.POST("/api/orders/new", controllers.CreateOrder)
 
 	err := r.Run("0.0.0.0:8079")
 	models.Check(err, "Error starting API")
