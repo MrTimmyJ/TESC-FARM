@@ -50,12 +50,16 @@ function checkout() {
     alert("Proceeding to checkout with a total of $" + 
         cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2));
     // Send cart data to api
+    let payload = {"items": []};
+    for (const item of cart) {
+      payload.items.push({"product": item.id, "quantity": item.quantity});
+    }
     fetch(api+'/orders/new', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(cart)
+        body: JSON.stringify(payload)
     }).then(response => {
         // Handle api response
         if (!response.ok) {
