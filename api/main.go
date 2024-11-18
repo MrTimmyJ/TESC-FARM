@@ -1,10 +1,11 @@
 package main
 
 import (
+	"net/http"
+
 	"github.com/Acstrayer/TESCSE-Ecom/api/controllers"
 	"github.com/Acstrayer/TESCSE-Ecom/api/models"
 	"github.com/gin-gonic/gin"
-	"net/http"
 )
 
 // For Jess; from Austin: excuse me?
@@ -20,7 +21,8 @@ func main() {
 	r.GET("/api/poop", poop)
 
 	//Product endpoints
-	r.GET("/api/products", controllers.FindProducts)
+	r.GET("/api/products", controllers.GetProducts)
+	r.GET("/api/products/search", controllers.SearchProducts)
 	r.POST("/api/products/new", controllers.CreateProduct)
 	r.GET("/api/product/:id", controllers.FindProduct)
 	r.PATCH("/api/product/:id/update", controllers.UpdateProduct)

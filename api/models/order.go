@@ -7,13 +7,13 @@ import (
 )
 
 type OrderItem struct {
-	ID        int `json:"id" gorm:"primary_key"`
-	Quantity  int `json:"quantity"`
-	Price     int `json:"price"` //in pennies
+	ID        int      `json:"id" gorm:"primary_key"`
+	Quantity  int      `json:"quantity"`
+	Price     int      `json:"price"` //in pennies
 	Product   *Product `json:"product"`
-	ProductID uint `json:"product_id"`
-	Order     *Order `json:"order"`
-	OrderID   uint`json:"order_id"`
+	ProductID uint     `json:"product_id"`
+	Order     *Order   `json:"order"`
+	OrderID   uint     `json:"order_id"`
 }
 
 // Method for getting subtotal
@@ -27,6 +27,6 @@ type Order struct {
 }
 
 type OrderRequestData struct {
-	Orders []Order
+	Orders    []Order
 	Retrieved time.Time
 }
