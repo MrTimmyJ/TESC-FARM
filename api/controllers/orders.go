@@ -5,6 +5,13 @@ package controllers
 type CreateOrderInput struct {
 	ID uint   `json:"id" binding:"required"`
 	Items []OrderItem `json:"items" binding:"required"`
+      Name string `json:"name" binding:"required"`
+      Email string `json:"email" binding:"required"`
+      Address1 string `json:"address_one" binding:"required"`
+      Address2 string `json:"address_two" binding:"required"`
+      City string `json:"city" binding:"required"`
+      State string `json:"state" binding:"required"`
+      Zip string `json:"zip" binding:"required"`
 }
 
 func CreateOrder(c *gin.Context) {
