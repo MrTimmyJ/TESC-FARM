@@ -456,8 +456,31 @@ input[type=submit]:hover {
     color: #eec673;
 }
 
-.container {
-    border-radius: 5px;
-    background-color: #81cc97;
+.contactcontain {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    height: 500px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 1vw;
+    color: #f27800;
+}
+
+.contact-form {
+    width: 50%;
     padding: 20px;
+    box-sizing: border-box;
+}
+
+.contactimage {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contactimage img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
