@@ -39,17 +39,17 @@
 
     <!-- Product Grid Section -->
     <div class="product-grid">
-        <a class="product-card">
+        <div class="product-card">
             <img src="static/img/products/grapes.png" alt="Grapes" />
             <div class="product-details">
-                <h3 class="product-name">Grapes</h3>
+                <h3 class="product-name">Grapes</h3
                 <h3 class="product-unit">per bunch</h3>
             </div>
             <div class="product-card-checkout">
                 <p class="price">$19.99</p>
                 <button class="add-to-cart-button" aria-label="Pre-order Product 1">Add to Cart</button>
             </div>
-        </a>
+        </div>
 
         <a class="product-card">
             <img src="static/img/products/apples.png" alt="Apples" />
@@ -227,7 +227,7 @@
             </div>
             <div class="product-card-checkout">
                 <p class="price">$19.99</p>
-                <button class="add-to-cart-button" aria-label="Pre-order Product 1">Add to Cart</button>
+                <button id="addToCartBtn" class="add-to-cart-button" aria-label="Pre-order Product 1">Add to Cart</button>
             </div>
         </a>
 
@@ -242,7 +242,6 @@
                 <button class="add-to-cart-button" aria-label="Pre-order Product 1">Add to Cart</button>
             </div>
         </a>
-
 
         <a class="product-card">
             <img src="static/img/products/parsley.png" alt="Parsley" class="product-details"/>
@@ -261,7 +260,7 @@
 </body>
 <footer>
     <div class="footerbox">
-        <button class="bottom">Employees</button>
+        <a href="signin.html" class="bottom">Employees</a>
             <h3>Watercress and Weiss</h3>
         <button class="bottom">Contact Us</button>
     </div>
