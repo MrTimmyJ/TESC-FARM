@@ -417,3 +417,47 @@ button:hover {
 .hidden {
     display: none;
 }
+
+
+/*********************************Employee Sign-In****************************************/
+.EmpHeader {
+    text-align: center;
+    font-size: 1vw;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #3f5700
+}
+
+
+/************************************Contact Us Page***************/
+input[type=text], select textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #3f5700;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical
+}
+
+input[type=submit] {
+    background-color: #eec673;
+    color: #3f5700;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 18px;
+}
+
+input[type=submit]:hover {
+    background-color: #3f5700;
+    color: #eec673;
+}
+
+.container {
+    border-radius: 5px;
+    background-color: #81cc97;
+    padding: 20px;
+}
