@@ -1,19 +1,21 @@
-// Sample cart data (this would be loaded from a backend or database in a real application)
+let api = 'https://www.tesc.farm/api';
 let cart = [
     { id: 1, name: "Product 1", price: 10.00, quantity: 1 },
     { id: 2, name: "Product 2", price: 15.00, quantity: 1 }
 ];
 
-// Function to render cart items on page load
+// Render cart items
 function renderCart() {
     const cartItems = document.getElementById("cart-items");
-    cartItems.innerHTML = ''; // Clear existing items
+    if (!cartItems) return;
 
+    cartItems.innerHTML = ''; // Clear existing items
     cart.forEach(item => {
         const li = document.createElement("li");
         li.innerHTML = `
             ${item.name} - $${item.price.toFixed(2)} x 
-            <input type="number" min="1" value="${item.quantity}" onchange="updateQuantity(${item.id}, this.value)">
+            <input type="number" min="1" value="${item.quantity}" 
+                   onchange="updateQuantity(${item.id}, this.value)">
             <button onclick="removeItem(${item.id})">Remove</button>
         `;
         cartItems.appendChild(li);
@@ -26,8 +28,9 @@ function renderCart() {
 function updateQuantity(itemId, newQuantity) {
     const item = cart.find(product => product.id === itemId);
     if (item) {
-        item.quantity = parseInt(newQuantity);
+        item.quantity = Math.max(parseInt(newQuantity) || 1, 1);
         updateCartSummary();
+        renderCart();
     }
 }
 
@@ -37,19 +40,89 @@ function removeItem(itemId) {
     renderCart();
 }
 
-// Update cart summary and total price
+// Update cart summary
 function updateCartSummary() {
-    const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-    document.getElementById("cart-count").textContent = cart.length;
-    document.getElementById("cart-total").textContent = total.toFixed(2);
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    document.getElementById("cart-count").textContent = totalItems;
+    document.getElementById("cart-total").textContent = totalPrice.toFixed(2);
 }
 
 // Checkout function
 function checkout() {
-    alert("Proceeding to checkout with a total of $" + 
-          cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2));
-    cart = []; // Clear the cart after checkout
-    renderCart();
+    // Retrieve cart total
+    const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2);
+
+    if (cart.length === 0) {
+        alert("Your cart is empty!");
+        return;
+    }
+
+    // Capture user information
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const address = document.getElementById('address').value;
+    const city = document.getElementById('city').value;
+    const state = document.getElementById('state').value;
+    const zip = document.getElementById('zip').value;
+    const card = document.getElementById('card').value;
+    const expiry = document.getElementById('expiry').value;
+    const cvv = document.getElementById('cvv').value;
+
+    // Basic validation
+    if (!name || !email || !address || !city || !state || !zip || !card || !expiry || !cvv) {
+        alert("Please fill out all required fields.");
+        return;
+    }
+
+    if (!confirm(`Proceed to checkout with a total of $${total}?`)) {
+        return; // Cancel checkout if user declines
+    }
+
+    // Prepare payload with user info and cart data
+    const payload = {
+        customer: {
+            name,
+            email,
+            address: {
+                street: address,
+                city,
+                state,
+                zip
+            }
+        },
+        payment: {
+            cardNumber: card,
+            expiry,
+            cvv
+        },
+        items: cart.map(item => ({
+            product: item.id,
+            quantity: item.quantity
+        }))
+    };
+
+    // Send data to API
+    fetch(`${api}/orders/new`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Error placing order. Please try again.");
+        }
+        return response.json();
+    })
+    .then(data => {
+        alert(`Order placed successfully! Order ID: ${data.orderId}`);
+        cart = []; // Clear the cart on success
+        renderCart();
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert(error.message);
+    });
 }
 
 // Initialize cart on page load

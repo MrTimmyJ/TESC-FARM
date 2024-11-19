@@ -17,7 +17,7 @@ type Product struct {
 	Type        string `json:"type"`
 	Description string `json:"description"`
 	Image       string `json:"image"`
-	Quantity    uint   `json:"quantity`
+	Quantity    uint   `json:"quantity"`
 	Price       int    `json:"price"` //In pennies
 	PLU         int    `json:"plu"`
 }
