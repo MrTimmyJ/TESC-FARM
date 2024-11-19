@@ -16,6 +16,13 @@ type CreateOrderItem struct {
 
 type CreateOrderInput struct {
 	Items []CreateOrderItem `json:"items" binding:"required"`
+      Name string `json:"name" binding:"required"`
+      Email string `json:"email" binding:"required"`
+      Address1 string `json:"address_one" binding:"required"`
+      Address2 string `json:"address_two" binding:"required"`
+      City string `json:"city" binding:"required"`
+      State string `json:"state" binding:"required"`
+      Zip string `json:"zip" binding:"required"`
 }
 
 func FindOrders(c *gin.Context) {
