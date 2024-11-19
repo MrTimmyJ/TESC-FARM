@@ -7,6 +7,7 @@
     <script src="https://kit.fontawesome.com/bb1edf6c5f.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <title>Produce</title>
+    <script> ln</script>
 </head>
 
 <header>
@@ -39,17 +40,17 @@
 
     <!-- Product Grid Section -->
     <div class="product-grid">
-        <a class="product-card">
+        <div class="product-card">
             <img src="static/img/products/grapes.png" alt="Grapes" />
             <div class="product-details">
-                <h3 class="product-name">Grapes</h3>
+                <h3 class="product-name">Grapes</h3
                 <h3 class="product-unit">per bunch</h3>
             </div>
             <div class="product-card-checkout">
                 <p class="price">$19.99</p>
                 <button class="add-to-cart-button" aria-label="Pre-order Product 1">Add to Cart</button>
             </div>
-        </a>
+        </div>
 
         <a class="product-card">
             <img src="static/img/products/apples.png" alt="Apples" />
@@ -227,7 +228,7 @@
             </div>
             <div class="product-card-checkout">
                 <p class="price">$19.99</p>
-                <button class="add-to-cart-button" aria-label="Pre-order Product 1">Add to Cart</button>
+                <button id="addToCartBtn" class="add-to-cart-button" aria-label="Pre-order Product 1">Add to Cart</button>
             </div>
         </a>
 
@@ -243,7 +244,6 @@
             </div>
         </a>
 
-
         <a class="product-card">
             <img src="static/img/products/parsley.png" alt="Parsley" class="product-details"/>
             <div class="product-details">
@@ -258,10 +258,11 @@
 
     </div>
     <hr style="color: #81cc97">
+    <script src="static/script.js"></script>
 </body>
 <footer>
     <div class="footerbox">
-        <button class="bottom">Employees</button>
+        <a href="signin.html" class="bottom">Employees</a>
             <h3>Watercress and Weiss</h3>
         <button class="bottom">Contact Us</button>
     </div>
