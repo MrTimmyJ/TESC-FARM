@@ -60,11 +60,11 @@ function renderProduce() {
 
             const prod_name = document.createElement("h3");
             prod_name.classList.add("product-name");
-            prod_name.innerText(product.name);
+            prod_name.innerText = product.name;
             card_details.appendChild(prod_name);
             const prod_unit = document.createElement("h3");
             prod_unit.classList.add("product-unit");
-            prod_unit.innerText(product.unit);
+            prod_unit.innerText = product.unit;
             card_details.appendChild(prod_unit);
             card.appendChild(card_details);
 
@@ -73,7 +73,7 @@ function renderProduce() {
 
             const prod_price = document.createElement("p");
             prod_price.classList.add("price");
-            prod_price.innerText(product.price);
+            prod_price.innerText = product.price;
             card_checkout.appendChild(prod_price);
             const prod_button = document.createElement("button");
             prod_button.classList.add("add-to-cart-button");
