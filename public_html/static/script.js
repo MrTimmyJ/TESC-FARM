@@ -113,7 +113,7 @@ function addToCart(e) {
     let name = e.target.parentElement.parentElement.querySelector(".product-name").innerText;
     let price = e.target.parentElement.querySelector(".price").innerText;
 
-    tempCart.append({"id": id, "name": name, "price": price, "quantity": 1});
+    tempCart.push({"id": id, "name": name, "price": price, "quantity": 1});
     localStorage.setItem("cart", tempCart);
     cart = tempCart;
 }
