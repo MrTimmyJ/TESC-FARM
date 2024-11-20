@@ -56,11 +56,13 @@ function renderProduce() {
             prod_name.classList.add("product-name");
             prod_name.innerText = product.name;
             card_details.appendChild(prod_name);
-            const prod_unit = document.createElement("h3");
+            /*
+	    const prod_unit = document.createElement("h3");
             prod_unit.classList.add("product-unit");
             prod_unit.innerText = product.unit;
             card_details.appendChild(prod_unit);
-            card.appendChild(card_details);
+            */
+	    card.appendChild(card_details);
 
             const card_checkout = document.createElement("div");
             card_checkout.classList.add("product-card-checkout");
