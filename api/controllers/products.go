@@ -48,6 +48,7 @@ func SearchProducts(c *gin.Context) {
 	c.JSON(http.StatusOK, prd)
 }
 
+//Needs user authentication
 func CreateProduct(c *gin.Context) {
 	// Validate input
 	input := new(CreateProductInput)

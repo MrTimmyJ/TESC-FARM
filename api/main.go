@@ -32,6 +32,9 @@ func main() {
 	r.GET("/api/orders", controllers.FindOrders)
 	r.POST("/api/orders/new", controllers.CreateOrder)
 
+	//User Endpoints
+	r.POST("/api/users/new", controllers.CreateUser)
+
 	err := r.Run("0.0.0.0:8079")
 	models.Check(err, "Error starting API")
 }
