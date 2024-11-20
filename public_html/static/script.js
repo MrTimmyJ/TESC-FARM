@@ -222,8 +222,10 @@ function checkout() {
 window.onload = renderCart;
 window.addEventListener("load", function(){
     cart = localStorage.getItem("cart");
-    if (cart == null) {
+    if (cart == null || cart.length == 0) {
         cart = [];
+    } else {
+        cart = JSON.parse(cart);
     }
 
     renderCart();
