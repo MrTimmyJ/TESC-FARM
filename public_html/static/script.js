@@ -73,10 +73,11 @@ function renderProduce() {
 
             const prod_price = document.createElement("p");
             prod_price.classList.add("price");
-            prod_price.innerText = product.price;
+            prod_price.innerText = "$" + product.price.toFixed(2);
             card_checkout.appendChild(prod_price);
             const prod_button = document.createElement("button");
             prod_button.classList.add("add-to-cart-button");
+            prod_button.textContent = "Add to Cart";
             card_checkout.appendChild(prod_button);
             card.appendChild(card_checkout);
 
