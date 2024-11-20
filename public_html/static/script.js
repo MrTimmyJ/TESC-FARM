@@ -97,7 +97,7 @@ function addToCart(e) {
     let id = e.target.parentElement.querySelector("input[name='prod_id']").value;
 
     let tempCart = localStorage.getItem("cart");
-    if (tempCart.length == 0) {
+    if (tempCart == null) {
         tempCart = [];
     } else {
         tempCart = JSON.parse(tempCart);
