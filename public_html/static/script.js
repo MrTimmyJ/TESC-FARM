@@ -97,14 +97,15 @@ function addToCart(e) {
     let id = e.target.parentElement.querySelector("input[name='prod_id']").value;
 
     let tempCart = localStorage.getItem("cart");
-    if (tempCart == null) {
+    if (tempCart == null || tempCart.length == 0) {
         tempCart = [];
     } else {
         tempCart = JSON.parse(tempCart);
         for (const item of tempCart) {
             if (item.id == id) {
                 item.quantity++;
-                localStorage.setItem("cart", tempCart);
+                localStorage.setItem("cart", JSON.stringify(tempCart));
+	        console.log(tempCart);
                 cart = tempCart;
                 return;
             }
@@ -221,11 +222,11 @@ function checkout() {
 // Initialize cart on page load
 window.onload = renderCart;
 window.addEventListener("load", function(){
-    cart = localStorage.getItem("cart");
-    if (cart == null || cart.length == 0) {
+    let tempCart = localStorage.getItem("cart");
+    if (tempCart == null || tempCart.length == 0) {
         cart = [];
     } else {
-        cart = JSON.parse(cart);
+        cart = JSON.parse(tempCart);
     }
 
     renderCart();
