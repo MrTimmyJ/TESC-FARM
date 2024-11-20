@@ -114,6 +114,10 @@ function addToCart(e) {
 
     let name = e.target.parentElement.parentElement.querySelector(".product-name").innerText;
     let price = e.target.parentElement.querySelector(".price").innerText;
+    if (price.charAt(0) == "$") {
+        price = price.substring(1);
+    }
+    price = Number(price);
 
     console.log(tempCart);
     tempCart.push({"id": id, "name": name, "price": price, "quantity": 1});
