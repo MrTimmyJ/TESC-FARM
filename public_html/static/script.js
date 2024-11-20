@@ -1,11 +1,5 @@
 let api = 'https://www.tesc.farm/api';
-let cart = [
-    { id: 1, name: "Product 1", price: 10.00, quantity: 1 },
-    { id: 2, name: "Product 2", price: 15.00, quantity: 1 },
-    { id: 3, name: "Product 2", price: 15.00, quantity: 1 },
-    { id: 4, name: "Product 2", price: 15.00, quantity: 1 },
-    { id: 5, name: "Product 2", price: 15.00, quantity: 1 }
-];
+let cart = [];
 
 // Render cart items
 function renderCart() {
@@ -110,6 +104,7 @@ function addToCart(e) {
             if (item.id == id) {
                 item.quantity++;
                 localStorage.setItem("cart", tempCart);
+                cart = tempCart;
                 return;
             }
         }
@@ -120,6 +115,7 @@ function addToCart(e) {
 
     tempCart.append({"id": id, "name": name, "price": price, "quantity": 1});
     localStorage.setItem("cart", tempCart);
+    cart = tempCart;
 }
 
 // Update item quantity
@@ -223,7 +219,11 @@ function checkout() {
 // Initialize cart on page load
 window.onload = renderCart;
 window.addEventListener("load", function(){
-    renderCart();
+    cart = localStorage.getItem("cart");
+    if (cart == null) {
+        cart = [];
+    }
 
+    renderCart();
     renderProduce();
 });
