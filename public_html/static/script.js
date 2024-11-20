@@ -97,9 +97,10 @@ function addToCart(e) {
     let id = e.target.parentElement.querySelector("input[name='prod_id']").value;
 
     let tempCart = localStorage.getItem("cart");
-    if (tempCart == null) {
+    if (tempCart.length == 0) {
         tempCart = [];
     } else {
+        tempCart = JSON.parse(tempCart);
         for (const item of tempCart) {
             if (item.id == id) {
                 item.quantity++;
@@ -115,7 +116,7 @@ function addToCart(e) {
 
     console.log(tempCart);
     tempCart.push({"id": id, "name": name, "price": price, "quantity": 1});
-    localStorage.setItem("cart", tempCart);
+    localStorage.setItem("cart", JSON.stringify(tempCart));
     cart = tempCart;
 }
 
