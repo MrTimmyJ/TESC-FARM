@@ -2,10 +2,6 @@
 
 package models
 
-
-
-
-
 type OrderItem struct {
 	ID int
 	Quantity int

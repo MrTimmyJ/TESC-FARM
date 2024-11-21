@@ -21,6 +21,17 @@ type CreateOrderInput struct {
       Zip string `json:"zip" binding:"required"`
 }
 
+func FindOrders(c *gin.Context) {
+	ordersData := new(models.OrderRequestData)
+	if c.Query("orderID") != "" {
+		models.DB.Where("orderID = ?", c.Query("OrderID")).Find(&ordersData.Orders)
+	} else {
+		models.DB.Find(&ordersData.Orders)
+	}
+	ordersData.Retrieved = time.Now()
+	c.JSON(http.StatusOK, ordersData)
+}
+
 func CreateOrder(c *gin.Context) {
 	// Validate input
 	var input CreateOrderInput
