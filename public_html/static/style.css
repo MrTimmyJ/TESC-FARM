@@ -45,6 +45,23 @@
 
 /**********************************************************Home Page*********************************************************/
 
+/*Skip to main content this is used for all pages*/
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #81cc97;
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    z-index: 1000;
+    transition: top 0.3s;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
 /*Style for text saying "Seasonal Spotlight"*/
 .sznspot {
     text-align: center;
@@ -137,6 +154,7 @@ color:#f27800;
 
 /***********************************************************About page*********************************************************/
 
+
 .values {
     text-align: center;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -208,7 +226,7 @@ body {
 }
 
 
-/*********************** Produce Page ***********************/
+/*********************************************************** Produce Page *****************************************************************/
 .product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -421,48 +439,80 @@ button:hover {
 
 
 
-/************************************Contact Us Page***************/
-input[type=text], select textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #3f5700;
-    border-radius: 4px;
-    box-sizing: border-box;
-    margin-top: 6px;
-    margin-bottom: 16px;
-    resize: vertical
-}
-
-input[type=submit] {
-    background-color: #eec673;
-    color: #3f5700;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 18px;
-}
-
-input[type=submit]:hover {
-    background-color: #3f5700;
-    color: #eec673;
-}
-
+/******************************************************Contact Us Page**********************************************************************/
 .contactcontain {
     display: flex;
-    justify-content: space-between;
+    justify-content:space-evenly;
     align-items: stretch;
-    height: 500px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 1vw;
-    color: #f27800;
+    gap: 20px;
+    padding: 40px;
+    font-family: 'Trebuchet MS', Arial, sans-serif;
+    font-size: 16px;
+    color: #3f5700;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .contact-form {
     width: 50%;
+    max-width: 600px;
     padding: 20px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
+}
+
+.contact-form h2 {
+    font-size: 24px;
+    color: #3f5700;
+    margin-bottom: 16px;
+}
+
+.contact-form p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #3f5700;
+}
+
+textarea {
+    height: 150px;
+}
+
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
     box-sizing: border-box;
+    margin-bottom: 16px;
+    font-size: 16px;
+    color: #333;
+}
+
+input[type=submit] {
+    background-color: #81cc97;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease;
+}
+
+input[type=submit]:hover {
+    background-color: #3f5700;
 }
 
 .contactimage {
@@ -472,8 +522,9 @@ input[type=submit]:hover {
     align-items: center;
 }
 
-.contactimage img{
+.contactimage img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

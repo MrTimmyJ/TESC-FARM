@@ -8,27 +8,33 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <title>Cart</title>
 </head>
-<header>
-    <nav class="topnav">
-        <!-- Logo Image -->
-        <a href="index.html" class="logo">
-            <img src="static/img/transparentlogo.png" alt="Watercress and Weiss Logo">
-        </a>
-        <span class="cart_lan"><i class="fa-solid fa-cart-shopping" id="cartHeaderIcon"></i></span>
-        <!-- Navigation Links -->
-        <div class="nav-links">
-            <li><a href="produce.html">Produce</a></li>
-            <li><a href="about.html">About</a></li>
-            <li>
-                <a href="cart.html" class="cart-link">
-                    <span class="cart_lan"><i class="fa-solid fa-cart-shopping"></i> Cart</span>
-                </a>
-            </li>
-        </div>
-    </nav>
-</header>
 <body>
-    <hr style="color: #81cc97">
+    <!-- Skip to Main Content Link -->
+    <a href="#main-content" class="skip-link">Skip to Main Content</a>
+
+    <header>
+        <nav class="topnav">
+            <!-- Logo Image -->
+            <a href="index.html" class="logo">
+                <img src="static/img/transparentlogo.png" alt="Watercress and Weiss Logo">
+            </a>
+            <!--<span class="cart_lan"><i class="fa-solid fa-cart-shopping" id="cartHeaderIcon"></i></span>-getting rid of tiny shoppingcart-->
+            <!-- Navigation Links -->
+            <div class="nav-links">
+                <li><a href="produce.html">Produce</a></li>
+                <li><a href="about.html">About</a></li>
+                <li>
+                    <a href="cart.html" class="cart-link">
+                        <span class="cart_lan"><i class="fa-solid fa-cart-shopping"></i> Cart</span>
+                    </a>
+                </li>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content Section -->
+    <main id="main-content">
+        <hr style="color: #81cc97">
         <h2>Checkout</h2>
         <form id="checkout-form">
             <div>
@@ -78,12 +84,9 @@
             </div>
             <button onclick="checkout()">Checkout</button>
         </section>
-   
+    </main>
 
     <script src="static/script.js"></script>
     <script src="static/checkout.js"></script>
-
-    
-
 </body>
 </html>
