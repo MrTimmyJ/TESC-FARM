@@ -1,8 +1,5 @@
 let api = 'https://www.tesc.farm/api';
-let cart = [
-    { id: 1, name: "Product 1", price: 10.00, quantity: 1 },
-    { id: 2, name: "Product 2", price: 15.00, quantity: 1 }
-];
+let cart = [];
 
 // Render cart items
 function renderCart() {
@@ -22,6 +19,112 @@ function renderCart() {
     });
 
     updateCartSummary();
+}
+
+function renderProduce() {
+    let grids = document.getElementsByClassName("product-grid");
+    if (grids.length < 1) {
+        return;
+    }
+
+    let grid = grids[0];
+
+    fetch(`${api}/products`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    }).then(response => {
+        if (!response.ok) {
+            throw new Error("Error finding products. Please try again.");
+        }
+        return response.json();
+    }).then(data => {
+        grid.innerHTML = "";
+        for (const product of data.Products) {
+            const card = document.createElement("div");
+            card.classList.add("product-card");
+
+            const prod_img = document.createElement("img");
+            prod_img.src = "static/img/products/" + product.image;
+            prod_img.alt = product.name;
+            card.appendChild(prod_img);
+
+            const card_details = document.createElement("div");
+            card_details.classList.add("product-details");
+            
+
+            const prod_name = document.createElement("h3");
+            prod_name.classList.add("product-name");
+            prod_name.innerText = product.name;
+            card_details.appendChild(prod_name);
+            /*
+	    const prod_unit = document.createElement("h3");
+            prod_unit.classList.add("product-unit");
+            prod_unit.innerText = product.unit;
+            card_details.appendChild(prod_unit);
+            */
+	    card.appendChild(card_details);
+
+            const card_checkout = document.createElement("div");
+            card_checkout.classList.add("product-card-checkout");
+
+            const prod_price = document.createElement("p");
+            prod_price.classList.add("price");
+            prod_price.innerText = "$" + product.price.toFixed(2);
+            card_checkout.appendChild(prod_price);
+
+            const prod_id = document.createElement("input");
+            prod_id.type = "hidden";
+            prod_id.name = "prod_id";
+            prod_id.value = product.id;
+            card_checkout.appendChild(prod_id);
+
+            const prod_button = document.createElement("button");
+            prod_button.classList.add("add-to-cart-button");
+            prod_button.textContent = "Add to Cart";
+            card_checkout.appendChild(prod_button);
+            card.appendChild(card_checkout);
+
+            grid.appendChild(card);
+
+            prod_button.addEventListener("click", addToCart);
+        }
+    }).catch(error => {
+        console.error('Error:', error);
+        alert(error.message);
+    });
+}
+
+// Add item to cart using 'e' as a Button Click Event
+function addToCart(e) {
+    let id = e.target.parentElement.querySelector("input[name='prod_id']").value;
+
+    let tempCart = localStorage.getItem("cart");
+    if (tempCart == null || tempCart.length == 0) {
+        tempCart = [];
+    } else {
+        tempCart = JSON.parse(tempCart);
+        for (const item of tempCart) {
+            if (item.id == id) {
+                item.quantity++;
+                localStorage.setItem("cart", JSON.stringify(tempCart));
+	        console.log(tempCart);
+                cart = tempCart;
+                return;
+            }
+        }
+    }
+
+    let name = e.target.parentElement.parentElement.querySelector(".product-name").innerText;
+    let price = e.target.parentElement.querySelector(".price").innerText;
+    if (price.charAt(0) == "$") {
+        price = price.substring(1);
+    }
+    price = Number(price);
+
+    console.log(tempCart);
+    tempCart.push({"id": id, "name": name, "price": price, "quantity": 1});
+    localStorage.setItem("cart", JSON.stringify(tempCart));
+    cart = tempCart;
 }
 
 // Update item quantity
@@ -107,19 +210,16 @@ function checkout() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
-    })
-    .then(response => {
+    }).then(response => {
         if (!response.ok) {
             throw new Error("Error placing order. Please try again.");
         }
         return response.json();
-    })
-    .then(data => {
+    }).then(data => {
         alert(`Order placed successfully! Order ID: ${data.orderId}`);
         cart = []; // Clear the cart on success
         renderCart();
-    })
-    .catch(error => {
+    }).catch(error => {
         console.error('Error:', error);
         alert(error.message);
     });
@@ -127,3 +227,14 @@ function checkout() {
 
 // Initialize cart on page load
 window.onload = renderCart;
+window.addEventListener("load", function(){
+    let tempCart = localStorage.getItem("cart");
+    if (tempCart == null || tempCart.length == 0) {
+        cart = [];
+    } else {
+        cart = JSON.parse(tempCart);
+    }
+
+    renderCart();
+    renderProduce();
+});

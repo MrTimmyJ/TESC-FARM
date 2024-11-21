@@ -9,41 +9,44 @@
     <title>About Us</title>
 </head>
 
-<header>
-    <nav class="topnav">
-        <!-- Logo Image -->
-        <a href="index.html" class="logo">
-            <img src="static/img/transparentlogo.png" alt="Watercress and Weiss Logo">
-        </a>
-
-        <!-- Navigation Links -->
-        <div class="nav-links">
-            <li><a href="produce.html">Produce</a></li>
-            <li><a href="about.html">About</a></li>
-            <li>
-                <a href="cart.html" class="cart-link">
-                    <span class="cart_lan"><i class="fa-solid fa-cart-shopping"></i> Cart</span>
-                </a>
-            </li>
-        </div>
-    </nav>
-    <hr style="color: #81cc97">
-</header>
-<div class="values">
-    <h1>
-        Our Values
-    </h1>  
-</div>
-
-
 <body>
+    <!-- Skip to Main Content Link -->
+    <a href="#main-content" class="skip-link">Skip to Main Content</a>
 
-    <section class="about-section">
+    <header>
+        <nav class="topnav">
+            <!-- Logo Image -->
+            <a href="index.html" class="logo">
+                <img src="static/img/transparentlogo.png" alt="Watercress and Weiss Logo">
+            </a>
+
+            <!-- Navigation Links -->
+            <div class="nav-links">
+                <li><a href="produce.html">Produce</a></li>
+                <li><a href="about.html">About</a></li>
+                <li>
+                    <a href="cart.html" class="cart-link">
+                        <span class="cart_lan"><i class="fa-solid fa-cart-shopping"></i> Cart</span>
+                    </a>
+                </li>
+            </div>
+        </nav>
+        <hr style="color: #81cc97">
+    </header>
+
+    <div class="values">
+        <h1>
+            Our Values
+        </h1>  
+    </div>
+
+    <!-- Main Content Section -->
+    <section id="main-content" class="about-section">
         <div class="container">
             
             <div class="row">
                 <div class="column image-column">
-                    <img src="static/img/personselling.jpg" alt="A relevant image">
+                    <img src="static/img/personselling.jpg" alt="Farmstand worker interacting with customers.">
                 </div>
                 <div class="column text-column">
                     <h2>Community Centered</h2>
@@ -59,7 +62,6 @@
                 </div>
             </div>
 
-           
             <div class="row reverse-row">
                 <div class="column text-column">
                     <h2>Organic</h2>
@@ -73,13 +75,13 @@
                     </p>
                 </div>
                 <div class="column image-column">
-                    <img src="static/img/farmplot.jpg" alt="Another relevant image">
+                    <img src="static/img/farmplot.jpg" alt="Image of the farm.">
                 </div>
             </div>
 
             <div class="row">
                 <div class="column image-column">
-                    <img src="static/img/holdingcarrot.jpg" alt="A relevant image">
+                    <img src="static/img/holdingcarrot.jpg" alt="Youth farmer proudly holding a carrot.">
                 </div>
                 <div class="column text-column">
                     <h2>Educational</h2>
@@ -96,13 +98,15 @@
         </div>
     </section>
     <hr style="color: #81cc97">
-</body>
 
-<footer>
-    <div class="footerbox">
-        <button class="bottom">Employees</button>
-            <h3>Watercress and Weiss</h3>
-        <button class="bottom">Contact Us</button>
-    </div>
-</footer>
+    <footer>
+        <div class="footerbox">
+            <a href="signin.html" class="bottom">Employees</a>
+                <h3>Watercress and Weiss</h3>
+                <a href="contact.html">
+                    <button class="bottom">Contact Us</button>
+                </a>
+        </div>
+    </footer>
+</body>
 </html>
