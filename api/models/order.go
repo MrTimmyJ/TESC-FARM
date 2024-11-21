@@ -10,6 +10,7 @@ type OrderItem struct {
 	ID       int
 	Quantity int
 	Price    int //in pennies
+    OrderID  int
 }
 
 type OrderRequestData struct {
@@ -19,7 +20,7 @@ type OrderRequestData struct {
 
 type Order struct {
 	ID       uint        `json:"id" gorm:"primary_key"`
-	Items    []OrderItem `json:"items"`
+    Items    []OrderItem `json:"items" gorm:"foreign_key:OrderID"`
 	Name     string      `json:"name"`
 	Email    string      `json:"email"`
 	Address1 string      `json:"address_one"`
