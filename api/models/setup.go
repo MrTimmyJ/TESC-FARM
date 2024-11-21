@@ -33,6 +33,9 @@ func ConnectDatabase() {
 	err = database.AutoMigrate(&Order{})
 	Check(err, "Order migration error")
 
+	err = database.AutoMigrate(&UserDB{})
+	Check(err, "User migration error")
+
 	// Set global database variable
 	DB = database
 }

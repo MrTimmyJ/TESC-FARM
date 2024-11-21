@@ -9,18 +9,16 @@ import (
 	"github.com/Acstrayer/TESCSE-Ecom/api/models"
 	"github.com/gin-gonic/gin"
 	"net/http"
-	"time"
 )
 
 //Hashes and salts password for DB storage
-func HashPassword(string pass) {
-	bytepass := byte[](pass)
+func HashPassword(pass string) (string, error){
+	bytepass := []byte(pass)
 	hash, err := bcrypt.GenerateFromPassword(bytepass, bcrypt.MinCost)
 	if err != nil {
-		log.Println(err);
-		return nil, err
+		return "", err
 	}
-	return string(hash)
+	return string(hash), err
 }
 
 //User creation endpoint
@@ -31,17 +29,17 @@ func CreateUser(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	hashed_password, err := HashPassword(input.password)
+	hashed_password, err := HashPassword(input.Password)
 	//checks whether hash and salt failed
 	if err != nil{
-		c.JSON(http.StatusBadRequest, gin.H{"error:", err.Error()})
+		c.JSON(http.StatusBadRequest, gin.H{"error:": err.Error()})
 		return
 	}
 	//creates DB model object
-	user := models.UserDB{ID: nil, users_name: input.users_name,
-							permissions_level: 0, 
-							password_hash: hashed_password,
-							email: input.email,}
+	user := models.UserDB{Users_name: input.Users_name,
+							Permissions_level: 0, 
+							Password_hash: hashed_password,
+							Email: input.Email}
 	models.DB.Create(&user)
-	c.JSON(http.StatusOK, gin,H{"data": user})
+	c.JSON(http.StatusOK, gin.H{"data": user})
 }
