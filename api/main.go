@@ -29,9 +29,12 @@ func main() {
 	r.DELETE("/api/product/:id/delete", controllers.DeleteProduct)
 
 	//Order endpoints
-	r.GET("/api/orders", controllers.FindOrders)
+	//r.GET("/api/orders", controllers.FindOrders)
 	r.POST("/api/orders/new", controllers.CreateOrder)
 
-	err := r.Run("0.0.0.0:8079")
+	//User Endpoints
+	r.POST("/api/users/new", controllers.CreateUser)
+
+	err := r.Run("127.0.0.1:8079")
 	models.Check(err, "Error starting API")
 }
