@@ -2,10 +2,6 @@
 
 package models
 
-import(
-	"time"
-)
-
 type OrderItem struct {
 	ID int
 	Quantity int

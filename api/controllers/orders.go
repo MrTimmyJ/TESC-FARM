@@ -2,6 +2,13 @@
 
 package controllers
 
+import (
+	"net/http"
+
+	"github.com/Acstrayer/TESCSE-Ecom/api/models"
+	"github.com/gin-gonic/gin"
+)
+
 type CreateOrderInput struct {
 	ID uint   `json:"id" binding:"required"`
 	Items []OrderItem `json:"items" binding:"required"`
@@ -12,6 +19,17 @@ type CreateOrderInput struct {
       City string `json:"city" binding:"required"`
       State string `json:"state" binding:"required"`
       Zip string `json:"zip" binding:"required"`
+}
+
+func FindOrders(c *gin.Context) {
+	ordersData := new(models.OrderRequestData)
+	if c.Query("orderID") != "" {
+		models.DB.Where("orderID = ?", c.Query("OrderID")).Find(&ordersData.Orders)
+	} else {
+		models.DB.Find(&ordersData.Orders)
+	}
+	ordersData.Retrieved = time.Now()
+	c.JSON(http.StatusOK, ordersData)
 }
 
 func CreateOrder(c *gin.Context) {

@@ -1,11 +1,5 @@
 let api = 'https://www.tesc.farm/api';
-let cart = [
-    { id: 1, name: "Product 1", price: 10.00, quantity: 1 },
-    { id: 2, name: "Product 2", price: 15.00, quantity: 1 },
-    { id: 3, name: "Product 2", price: 15.00, quantity: 1 },
-    { id: 4, name: "Product 2", price: 15.00, quantity: 1 },
-    { id: 5, name: "Product 2", price: 15.00, quantity: 1 }
-];
+let cart = [];
 
 // Render cart items
 function renderCart() {
@@ -62,21 +56,31 @@ function renderProduce() {
             prod_name.classList.add("product-name");
             prod_name.innerText = product.name;
             card_details.appendChild(prod_name);
-            const prod_unit = document.createElement("h3");
+            /*
+	    const prod_unit = document.createElement("h3");
             prod_unit.classList.add("product-unit");
             prod_unit.innerText = product.unit;
             card_details.appendChild(prod_unit);
-            card.appendChild(card_details);
+            */
+	    card.appendChild(card_details);
 
             const card_checkout = document.createElement("div");
             card_checkout.classList.add("product-card-checkout");
 
             const prod_price = document.createElement("p");
             prod_price.classList.add("price");
-            prod_price.innerText = product.price;
+            prod_price.innerText = "$" + product.price.toFixed(2);
             card_checkout.appendChild(prod_price);
+
+            const prod_id = document.createElement("input");
+            prod_id.type = "hidden";
+            prod_id.name = "prod_id";
+            prod_id.value = product.id;
+            card_checkout.appendChild(prod_id);
+
             const prod_button = document.createElement("button");
             prod_button.classList.add("add-to-cart-button");
+            prod_button.textContent = "Add to Cart";
             card_checkout.appendChild(prod_button);
             card.appendChild(card_checkout);
 
@@ -90,8 +94,37 @@ function renderProduce() {
     });
 }
 
+// Add item to cart using 'e' as a Button Click Event
 function addToCart(e) {
-    alert("Add item to cart.");
+    let id = e.target.parentElement.querySelector("input[name='prod_id']").value;
+
+    let tempCart = localStorage.getItem("cart");
+    if (tempCart == null || tempCart.length == 0) {
+        tempCart = [];
+    } else {
+        tempCart = JSON.parse(tempCart);
+        for (const item of tempCart) {
+            if (item.id == id) {
+                item.quantity++;
+                localStorage.setItem("cart", JSON.stringify(tempCart));
+	        console.log(tempCart);
+                cart = tempCart;
+                return;
+            }
+        }
+    }
+
+    let name = e.target.parentElement.parentElement.querySelector(".product-name").innerText;
+    let price = e.target.parentElement.querySelector(".price").innerText;
+    if (price.charAt(0) == "$") {
+        price = price.substring(1);
+    }
+    price = Number(price);
+
+    console.log(tempCart);
+    tempCart.push({"id": id, "name": name, "price": price, "quantity": 1});
+    localStorage.setItem("cart", JSON.stringify(tempCart));
+    cart = tempCart;
 }
 
 // Update item quantity
@@ -195,7 +228,13 @@ function checkout() {
 // Initialize cart on page load
 window.onload = renderCart;
 window.addEventListener("load", function(){
-    renderCart();
+    let tempCart = localStorage.getItem("cart");
+    if (tempCart == null || tempCart.length == 0) {
+        cart = [];
+    } else {
+        cart = JSON.parse(tempCart);
+    }
 
+    renderCart();
     renderProduce();
 });
