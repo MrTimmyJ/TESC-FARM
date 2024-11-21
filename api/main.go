@@ -2,7 +2,6 @@ package main
 
 import (
 	"net/http"
-
 	"github.com/Acstrayer/TESCSE-Ecom/api/controllers"
 	"github.com/Acstrayer/TESCSE-Ecom/api/models"
 	"github.com/gin-gonic/gin"
@@ -29,7 +28,7 @@ func main() {
 	r.DELETE("/api/product/:id/delete", controllers.DeleteProduct)
 
 	//Order endpoints
-	//r.GET("/api/orders", controllers.FindOrders)
+	r.GET("/api/orders", controllers.FindOrders)
 	r.POST("/api/orders/new", controllers.CreateOrder)
 
 	//User Endpoints

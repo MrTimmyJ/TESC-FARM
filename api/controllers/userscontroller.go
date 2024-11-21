@@ -5,14 +5,14 @@
 package controllers
 
 import (
-	"golang.org/x/crypto/bcrypt"
 	"github.com/Acstrayer/TESCSE-Ecom/api/models"
 	"github.com/gin-gonic/gin"
+	"golang.org/x/crypto/bcrypt"
 	"net/http"
 )
 
 //Hashes and salts password for DB storage
-func HashPassword(pass string) (string, error){
+func HashPassword(pass string) (string, error) {
 	bytepass := []byte(pass)
 	hash, err := bcrypt.GenerateFromPassword(bytepass, bcrypt.MinCost)
 	if err != nil {
@@ -31,15 +31,15 @@ func CreateUser(c *gin.Context) {
 	}
 	hashed_password, err := HashPassword(input.Password)
 	//checks whether hash and salt failed
-	if err != nil{
+	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error:": err.Error()})
 		return
 	}
 	//creates DB model object
 	user := models.UserDB{Users_name: input.Users_name,
-							Permissions_level: 0, 
-							Password_hash: hashed_password,
-							Email: input.Email}
+		Permissions_level: 0,
+		Password_hash:     hashed_password,
+		Email:             input.Email}
 	models.DB.Create(&user)
 	c.JSON(http.StatusOK, gin.H{"data": user})
 }
