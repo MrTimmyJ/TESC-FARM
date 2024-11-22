@@ -4,14 +4,16 @@ package models
 
 import (
     "time"
+	"gorm.io/gorm"
 )
 
 type OrderItem struct {
-    ID        int `json:"id" gorm:"primary_key"`
+    gorm.Model
     Quantity  int `json:"quantity"`
     Price     int `json:"price"` //in pennies
-    Product   int `json:"product_id" gorm:"foreign_key:ID"`
-    OrderID   int `json:"order_id"`
+    Product   Product `json:"product"`
+    ProductID uint `json:"product_id"`
+    OrderID   uint `json:"order_id"`
 }
 
 type OrderRequestData struct {
@@ -20,8 +22,8 @@ type OrderRequestData struct {
 }
 
 type Order struct {
-	ID       uint        `json:"id" gorm:"primary_key"`
-    Items    []OrderItem `json:"items" gorm:"foreign_key:OrderID"`
+    gorm.Model
+    Items    []OrderItem `json:"items" gorm:"foreignKey:OrderID"`
 	Name     string      `json:"name"`
 	Email    string      `json:"email"`
 	Address1 string      `json:"address_one"`
