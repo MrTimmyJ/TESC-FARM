@@ -3,6 +3,7 @@
 package models
 
 import (
+	"gorm.io/gorm"
 	"time"
 )
 
@@ -12,7 +13,7 @@ type ProductRequestData struct {
 }
 
 type Product struct {
-	ID          uint   `json:"id" gorm:"primary_key"`
+  gorm.Model
 	Name        string `json:"name"`
 	Type        string `json:"type"`
 	Description string `json:"description"`

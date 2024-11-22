@@ -21,15 +21,33 @@ type CreateOrderInput struct {
 	Zip      string             `json:"zip" binding:"required"`
 }
 
-func FindOrders(c *gin.Context) {
-	ordersData := new(models.OrderRequestData)
+func GetOrders(c *gin.Context) {
+	ord := new(models.OrderRequestData)
 	if c.Query("orderID") != "" {
-		models.DB.Where("orderID = ?", c.Query("OrderID")).Find(&ordersData.Orders)
+		models.DB.Where("orderID = ?", c.Query("OrderID")).Find(&ord.Orders)
 	} else {
-		models.DB.Find(&ordersData.Orders)
+		models.DB.Preload("Items").Preload("Items.Product").Find(&ord.Orders)
 	}
-	ordersData.Retrieved = time.Now()
-	c.JSON(http.StatusOK, ordersData)
+  
+	ord.Retrieved = time.Now()
+	c.JSON(http.StatusOK, ord)
+}
+
+func SearchOrders(c *gin.Context) {
+	ord := new(models.OrderRequestData)
+	query := c.Query("query")
+
+	//Magic gorm search
+	if err := models.DB.Preload("Items").Preload("Items.Product").Where("id LIKE ? OR name LIKE ? OR email LIKE ? OR address1 LIKE ? OR address2 LIKE ? OR city LIKE ? OR state LIKE ? OR zip LIKE ?",
+		"%"+query+"%", "%"+query+"%", "%"+query+"%", "%"+query+"%", "%"+query+"%",
+		"%"+query+"%", "%"+query+"%", "%"+query+"%").Find(&ord.Orders).Error; err != nil {
+		//Database error, return
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+	//Query completed succesfully, return json
+	ord.Retrieved = time.Now()
+	c.JSON(http.StatusOK, ord)
 }
 
 func CreateOrder(c *gin.Context) {

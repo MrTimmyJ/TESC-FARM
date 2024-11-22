@@ -1,4 +1,4 @@
-// models/usermodel.go
+// models/user.go
 
 package models
 

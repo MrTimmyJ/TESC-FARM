@@ -28,7 +28,8 @@ func main() {
 	r.DELETE("/api/product/:id/delete", controllers.DeleteProduct)
 
 	//Order endpoints
-	r.GET("/api/orders", controllers.FindOrders)
+	r.GET("/api/orders", controllers.GetOrders)
+	r.GET("/api/orders/search", controllers.SearchOrders)
 	r.POST("/api/orders/new", controllers.CreateOrder)
 
 	//User Endpoints
