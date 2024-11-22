@@ -7,10 +7,11 @@ import (
 )
 
 type OrderItem struct {
-	ID       int
-	Quantity int
-	Price    int //in pennies
-    OrderID  int
+    ID        int `json:"id" gorm:"primary_key"`
+    Quantity  int `json:"quantity"`
+    Price     int `json:"price"` //in pennies
+    Product   int `json:"product_id" gorm:"foreign_key:ID"`
+    OrderID   int `json:"order_id"`
 }
 
 type OrderRequestData struct {
