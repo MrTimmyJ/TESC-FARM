@@ -23,9 +23,9 @@ func HashPassword(pass string) (string, error) {
 
 // User creation endpoint
 func CreateUser(c *gin.Context) {
-	input := new(models.UserFE)
+	input := new(models.UserInput)
 	//checks value extraction from json
-	if err := c.ShouldBindJSON(input); err != nil {
+	if err := c.ShouldBindJSON(input); err != nil || input.Users_name == "" {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
@@ -36,10 +36,35 @@ func CreateUser(c *gin.Context) {
 		return
 	}
 	//creates DB model object
-	user := models.UserDB{Users_name: input.Users_name,
+	user := models.User{
+    Users_name:        input.Users_name,
 		Permissions_level: 0,
 		Password_hash:     hashed_password,
-		Email:             input.Email}
+		Email:             input.Email,
+  }
 	models.DB.Create(&user)
 	c.JSON(http.StatusOK, gin.H{"data": user})
+}
+
+// User login endpoint
+func UserLogin(c *gin.Context) {
+	input := new(models.UserInput)
+	if err := c.ShouldBindJSON(input); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+  user := models.User{}
+  models.DB.Where("email = ?", input.Email).First(&user)
+  if user == (models.User{}) {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "User not found"})
+		return
+  }
+  hashed_password, err := HashPassword(input.Password)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error:": err.Error()})
+		return
+	}
+  if hashed_password == user.Password_hash {
+    c.JSON(http.StatusOK, gin.H{"access": "granted"})
+  }
 }

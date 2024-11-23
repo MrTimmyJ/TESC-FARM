@@ -2,7 +2,7 @@
 
 package models
 
-type UserDB struct {
+type User struct {
 	ID                uint   `json:"ID" gorm:"primary_key"`
 	Users_name        string `json:"users_name"`
 	Permissions_level uint   `json:"permissions_level"`
@@ -10,8 +10,8 @@ type UserDB struct {
 	Email             string `json:"email"`
 }
 
-type UserFE struct {
-	Users_name string `json:"users_name" binding:"required"`
+type UserInput struct {
+	Users_name string `json:"users_name"`
 	Password   string `json:"password" binding:"required"`
 	Email      string `json:"email" binding:"required"`
 }

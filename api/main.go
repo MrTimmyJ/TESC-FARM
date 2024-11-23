@@ -34,6 +34,7 @@ func main() {
 
 	//User Endpoints
 	r.POST("/api/users/new", controllers.CreateUser)
+	r.POST("/api/user/login", controllers.UserLogin)
 
 	err := r.Run("127.0.0.1:8079")
 	models.Check(err, "Error starting API")
