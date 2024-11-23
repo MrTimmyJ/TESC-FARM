@@ -69,7 +69,7 @@ function renderProduce() {
 
             const prod_price = document.createElement("p");
             prod_price.classList.add("price");
-            prod_price.innerText = "$" + product.price.toFixed(2);
+            prod_price.innerText = "$" + (product.price / 100).toFixed(2);
             card_checkout.appendChild(prod_price);
 
             const prod_id = document.createElement("input");
