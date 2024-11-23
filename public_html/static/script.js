@@ -105,7 +105,9 @@ function renderProduce() {
 
 // Add item to cart using 'e' as a Button Click Event
 function addToCart(e) {
-    let id = Number(e.target.parentElement.querySelector("input[name='prod_id']").value);
+    const id = Number(e.target.parentElement.querySelector("input[name='prod_id']").value);
+    const originalColor = e.target.style.backgroundColor;
+    const flashColor = "#3f5701";
     let tempCart = localStorage.getItem("cart");
     if (tempCart == null || tempCart.length == 0) {
         tempCart = [];
@@ -116,6 +118,10 @@ function addToCart(e) {
                 item.quantity++;
                 localStorage.setItem("cart", JSON.stringify(tempCart));
                 cart = tempCart;
+                e.target.style.backgroundColor = flashColor;
+                setTimeout(function (){
+                    e.target.style.backgroundColor = originalColor;
+                }, 300);
                 return;
             }
         }
@@ -131,9 +137,7 @@ function addToCart(e) {
     tempCart.push({"id": id, "name": name, "price": price, "quantity": 1});
     localStorage.setItem("cart", JSON.stringify(tempCart));
     cart = tempCart;
-    const originalColor = e.target.style.backgroundColor;
-    console.log(originalColor);
-    e.target.style.backgroundColor = "#3f5701";
+    e.target.style.backgroundColor = flashColor;
     setTimeout(function (){
         e.target.style.backgroundColor = originalColor;
     }, 300);
