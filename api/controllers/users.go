@@ -66,5 +66,7 @@ func UserLogin(c *gin.Context) {
 	}
   if hashed_password == user.Password_hash {
     c.JSON(http.StatusOK, gin.H{"access": "granted"})
+  } else {
+    c.JSON(http.StatusForbidden, gin.H{"access": "denied"})
   }
 }
