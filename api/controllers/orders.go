@@ -57,7 +57,7 @@ func SearchOrders(c *gin.Context) {
 func CreateOrder(c *gin.Context) {
 	// Validate input
 	//var input CreateOrderInput
-	var input Order
+	var input models.Order
 	if err := c.ShouldBindJSON(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
@@ -72,11 +72,11 @@ func CreateOrder(c *gin.Context) {
   //order.City = input.City
   //order.State = input.State
   //order.Zip = input.Zip
-  for item := range input.Items {
-    db.First(&item.Product, item.ProductID)
+  for _, item := range input.Items {
+    models.DB.First(&item.Product, item.ProductID)
     item.Price = item.Product.Price
   }
 	models.DB.Create(&input)
 
-	c.JSON(http.StatusOK, gin.H{"data": order})
+	c.JSON(http.StatusOK, gin.H{"data": input})
 }
