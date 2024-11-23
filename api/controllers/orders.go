@@ -16,7 +16,7 @@ func GetOrders(c *gin.Context) {
 	} else {
 		models.DB.Preload("Items").Preload("Items.Product").Find(&ord.Orders)
 	}
-  
+
 	ord.Retrieved = time.Now()
 	c.JSON(http.StatusOK, ord)
 }
@@ -46,11 +46,11 @@ func CreateOrder(c *gin.Context) {
 		return
 	}
 
-  for _, item := range input.Items {
-    item.Product = models.Product{}
-    models.DB.First(&item.Product, item.ProductID)
-    item.Price = item.Product.Price
-  }
+	for _, item := range input.Items {
+		item.Product = models.Product{}
+		models.DB.First(&item.Product, item.ProductID)
+		item.Price = item.Product.Price
+	}
 	models.DB.Create(&input)
 
 	c.JSON(http.StatusOK, gin.H{"data": input})

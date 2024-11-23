@@ -13,7 +13,7 @@ type ProductRequestData struct {
 }
 
 type Product struct {
-  gorm.Model
+	gorm.Model
 	Name        string `json:"name"`
 	Type        string `json:"type"`
 	Description string `json:"description"`

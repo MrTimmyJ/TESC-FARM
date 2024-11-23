@@ -11,7 +11,7 @@ import (
 	"net/http"
 )
 
-//Hashes and salts password for DB storage
+// Hashes and salts password for DB storage
 func HashPassword(pass string) (string, error) {
 	bytepass := []byte(pass)
 	hash, err := bcrypt.GenerateFromPassword(bytepass, bcrypt.MinCost)
@@ -21,7 +21,7 @@ func HashPassword(pass string) (string, error) {
 	return string(hash), err
 }
 
-//User creation endpoint
+// User creation endpoint
 func CreateUser(c *gin.Context) {
 	input := new(models.UserFE)
 	//checks value extraction from json

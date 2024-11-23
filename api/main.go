@@ -1,10 +1,10 @@
 package main
 
 import (
-	"net/http"
 	"github.com/Acstrayer/TESCSE-Ecom/api/controllers"
 	"github.com/Acstrayer/TESCSE-Ecom/api/models"
 	"github.com/gin-gonic/gin"
+	"net/http"
 )
 
 // For Jess; from Austin: excuse me?
