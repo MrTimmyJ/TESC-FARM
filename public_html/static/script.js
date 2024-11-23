@@ -96,8 +96,7 @@ function renderProduce() {
 
 // Add item to cart using 'e' as a Button Click Event
 function addToCart(e) {
-    let id = e.target.parentElement.querySelector("input[name='prod_id']").value;
-
+    let id = Number(e.target.parentElement.querySelector("input[name='prod_id']").value);
     let tempCart = localStorage.getItem("cart");
     if (tempCart == null || tempCart.length == 0) {
         tempCart = [];
@@ -107,7 +106,6 @@ function addToCart(e) {
             if (item.id == id) {
                 item.quantity++;
                 localStorage.setItem("cart", JSON.stringify(tempCart));
-	        console.log(tempCart);
                 cart = tempCart;
                 return;
             }
@@ -121,7 +119,6 @@ function addToCart(e) {
     }
     price = Number(price);
 
-    console.log(tempCart);
     tempCart.push({"id": id, "name": name, "price": price, "quantity": 1});
     localStorage.setItem("cart", JSON.stringify(tempCart));
     cart = tempCart;
@@ -193,8 +190,8 @@ function checkout() {
       state: state,
       zip: zip,
       items: cart.map(item => ({
-          product_id: item.id,
-          quantity: item.quantity
+          product_id: Number(item.id),
+          quantity: Number(item.quantity)
       }))
     };
     console.log(payload);
