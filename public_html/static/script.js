@@ -132,6 +132,7 @@ function addToCart(e) {
     localStorage.setItem("cart", JSON.stringify(tempCart));
     cart = tempCart;
     const originalColor = e.target.style.backgroundColor;
+    console.log(originalColor);
     e.target.style.backgroundColor = "#3f5701";
     setTimeout(function (){
         e.target.style.backgroundColor = originalColor;
