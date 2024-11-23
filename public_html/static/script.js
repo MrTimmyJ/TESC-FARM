@@ -224,6 +224,13 @@ function checkout() {
         cart = []; // Clear the cart on success
         localStorage.setItem("cart", JSON.stringify(cart));
         renderCart();
+        document.getElementById('name').value = "";
+        document.getElementById('email').value = "";
+        document.getElementById('address1').value = "";
+        document.getElementById('address2').value = "";
+        document.getElementById('city').value = "";
+        document.getElementById('state').value = "";
+        document.getElementById('zip').value = "";
     }).catch(error => {
         console.error('Error:', error);
         alert(error.message);

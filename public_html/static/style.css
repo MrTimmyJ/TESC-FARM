@@ -96,7 +96,6 @@
     background-color: #3a3a3a;
     border-radius: 50%;
     border: none;
-    /*width: calc(var(--size) - var(--padding) - var(--padding));*/
     aspect-ratio: 1;
     cursor: pointer;
     margin: auto;
@@ -297,7 +296,6 @@ body {
     padding: 15px;
     backdrop-filter: blur(10px);
     transition: transform 0.3s, box-shadow 0.3s;
-    cursor: pointer;
     text-decoration: none;
     display: flex;
     flex-direction: column;
