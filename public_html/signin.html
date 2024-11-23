@@ -131,6 +131,7 @@
       }).then(response => {
         if (!response.ok) {
             throw new Error("Access Denied");
+            alert("Access Denied");
         } else {
             location.href = "dashboard.html";
         }
