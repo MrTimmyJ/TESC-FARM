@@ -136,6 +136,7 @@ function updateQuantity(itemId, newQuantity) {
     if (item) {
         item.quantity = Math.max(parseInt(newQuantity) || 1, 1);
         updateCartSummary();
+        localStorage.setItem("cart", JSON.stringify(cart));
         renderCart();
     }
 }
@@ -143,6 +144,7 @@ function updateQuantity(itemId, newQuantity) {
 // Remove an item from the cart
 function removeItem(itemId) {
     cart = cart.filter(product => product.id !== itemId);
+    localStorage.setItem("cart", JSON.stringify(cart));
     renderCart();
 }
 

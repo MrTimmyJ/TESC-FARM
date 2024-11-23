@@ -382,10 +382,12 @@ body {
     flex-direction: row;
     flex-wrap: wrap;
 }
-#cart-container .col-md-6 {
+#cart-container .col-6 {
     max-width: 49%;
 }
-
+#cart-container .col-12 {
+    width: 100%;
+}
 #cartHeaderIcon {
     font-size:x-large;
 }

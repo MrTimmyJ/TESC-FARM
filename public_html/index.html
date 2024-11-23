@@ -92,12 +92,12 @@
     <script>
       function search() {
         const query = document.getElementsByClassName('search-input');
-        if (query.length < 1) {
+        if (query.length < 1 || query[0].value == "") {
           return;
         }
         const params = new URLSearchParams();
         params.append('query', query[0].value);
-        location.href = "produce.html" + params.toString();
+        location.href = "produce.html?" + params.toString();
       }
     </script>
 </body>
