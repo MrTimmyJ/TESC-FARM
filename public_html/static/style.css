@@ -281,7 +281,7 @@ body {
 /*********************************************************** Produce Page *****************************************************************/
 .product-grid {
     display: grid;
-    grid-auto-columns: 1fr 250px;
+    grid-auto-columns: repeat(auto-fill, minmax(250px, 1fr));;
     gap: 20px;
     padding: 20px;
 }
@@ -541,7 +541,6 @@ button:hover {
   height: 120px;
   margin: auto;
   animation: spin 2s linear infinite;
-  grid-area: header;
 }
 
 @keyframes spin {
@@ -624,8 +623,6 @@ button:hover {
 .hidden {
     display: none;
 }
-
-
 
 
 /******************************************************Contact Us Page**********************************************************************/
