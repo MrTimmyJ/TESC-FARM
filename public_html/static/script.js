@@ -204,7 +204,6 @@ function checkout() {
           quantity: Number(item.quantity)
       }))
     };
-    console.log(payload);
 
     // Send data to API
     fetch(`${api}/orders/new`, {

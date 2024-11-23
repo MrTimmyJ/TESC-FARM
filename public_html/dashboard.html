@@ -193,19 +193,7 @@
                 <th scope="col">Status</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>John Doe</td>
-                <td>$45.00</td>
-                <td>Shipped</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Jane Smith</td>
-                <td>$25.50</td>
-                <td>Pending</td>
-              </tr>
+            <tbody id="recent-orders">
             </tbody>
           </table>
         </div>
@@ -250,6 +238,40 @@
         }
       });
     })();
+    fetch('https://www.tesc.farm/orders', {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    }).then(response => {
+        if (!response.ok) {
+            throw new Error("Error finding orders. Please try again.");
+        }
+        return response.json();
+    }).then(data => {
+        const tbody = document.getElementById('recent-orders');
+        for (const order of data.Orders) {
+          const tr = document.createElement('tr');
+          const id = document.createElement('td');
+          id.innerText = order.ID;
+          tr.appendChild(id);
+          const name = document.createElement('td');
+          name.innerText = order.name;
+          tr.appendChild(name);
+          const amount = document.createElement('td');
+          let total = 0;
+          for (const line of order.items) {
+            total += line.price * line.quantity / 100;
+          }
+          amount.innerText = total;
+          tr.appendChild(amount);
+          const stat = document.createElement('td'); 
+          stat.innerText = "Pending";
+          tr.appendChild(stat);
+          tbody.appendChild(tr);
+        }
+    }).catch(error => {
+        console.error('Error:', error);
+        alert(error.message);
+    });
   </script>
 
 </body>
