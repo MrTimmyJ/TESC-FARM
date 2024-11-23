@@ -230,10 +230,16 @@ function checkout() {
 function search(e, query) {
     if (!query) {
       let el = e.target;
-      if (el.tagName == "i") {
-        el = el.parentElement;
+      if (el.tagName == "INPUT") {
+        if (e.keyCode != 13) {
+          return;
+        }
+      } else if (el.tagName == "I") {
+        el = el.parentElement.previousElementSibling;
+      } else {
+        el = el.previousElementSibling;
       }
-      const searchInput = el.previousElementSibling;
+      const searchInput = el;
       query = searchInput.value;
     }
     if (query == "") {
