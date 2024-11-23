@@ -73,7 +73,7 @@ func CreateOrder(c *gin.Context) {
   //order.State = input.State
   //order.Zip = input.Zip
   for _, item := range input.Items {
-    item.Product = Product{}
+    item.Product = models.Product{}
     models.DB.First(&item.Product, item.ProductID)
     item.Price = item.Product.Price
   }
