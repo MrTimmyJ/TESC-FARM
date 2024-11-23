@@ -176,9 +176,11 @@ function checkout() {
         return;
     }
 
+    /*
     if (!confirm(`Proceed to checkout with a total of $${total}?`)) {
         return; // Cancel checkout if user declines
     }
+    */
 
     // Prepare payload with user info and cart data
     const payload = {
@@ -210,6 +212,7 @@ function checkout() {
     }).then(data => {
         alert(`Order placed successfully! Order ID: ${data.orderId}`);
         cart = []; // Clear the cart on success
+        localStorage.setItem("cart", JSON.stringify(cart));
         renderCart();
     }).catch(error => {
         console.error('Error:', error);
