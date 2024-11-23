@@ -45,13 +45,10 @@ func CreateOrder(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-
-	for _, item := range input.Items {
-		item.Product = models.Product{}
-		models.DB.First(&item.Product, item.ProductID)
-		item.Price = item.Product.Price
+	for i := range input.Items {
+		models.DB.First(&input.Items[i].Product, input.Items[i].ProductID)
+		input.Items[i].Price = input.Items[i].Product.Price
 	}
 	models.DB.Create(&input)
-
 	c.JSON(http.StatusOK, gin.H{"data": input})
 }
