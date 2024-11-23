@@ -727,6 +727,9 @@ input[type=submit]:hover {
     }
 }
 @media screen and (max-width: 768px) {
+    .nav-links a {
+      font-size: 18px;
+    }
     .sgrid .seasonal {
         width: 100px;
         height: 100px;
@@ -768,9 +771,6 @@ input[type=submit]:hover {
 @media screen and (max-width: 600px) {
     .nav-links {
         margin: auto;
-    }
-    .nav-links a {
-      font-size: 18px;
     }
     .logo {
         margin: auto;
