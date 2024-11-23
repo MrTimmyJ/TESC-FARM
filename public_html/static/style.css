@@ -541,7 +541,9 @@ button:hover {
   height: 120px;
   margin: auto;
   animation: spin 2s linear infinite;
-  grid-column: 1/6;
+}
+.loader.hidden {
+  display: none;
 }
 
 @keyframes spin {

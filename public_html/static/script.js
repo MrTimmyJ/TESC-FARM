@@ -22,13 +22,13 @@ function renderCart() {
 }
 
 function renderProduce() {
-    let grids = document.getElementsByClassName("product-grid");
+    const grids = document.getElementsByClassName("product-grid");
     if (grids.length < 1) {
         return;
     }
-
-    let grid = grids[0];
+     
     let endpoint = `${api}/products`
+    const grid = grids[0];
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const query = urlParams.get('query');
@@ -94,6 +94,8 @@ function renderProduce() {
 
             prod_button.addEventListener("click", addToCart);
         }
+        const loader = grid.previousElementSibling;
+        loader.classList.add('hidden');
     }).catch(error => {
         console.error('Error:', error);
         alert(error.message);
