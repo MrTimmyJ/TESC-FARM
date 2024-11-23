@@ -70,14 +70,11 @@
             alt="Fall in Love with November Savings">
         </div>
 
-        <!--
         <div class="highlights">
-            <button class="button">Vegetables</button>
-            <button class="button">Fruit</button>
-            <button class="button">Artisan</button>
-            <button class="button">Flowers</button>
+            <button class="button" onClick="search('vegetable')">Vegetables</button>
+            <button class="button" onClick="search('fruit')">Fruits</button>
+            <button class="button" onClick="search('herb')">Herbs</button>
         </div>
-        -->
 
         <hr style="color: #81cc97">
     </main>
@@ -90,13 +87,16 @@
         </div>
     </footer>
     <script>
-      function search() {
-        const query = document.getElementsByClassName('search-input');
-        if (query.length < 1 || query[0].value == "") {
-          return;
+      function search(query) {
+        if (!query) {
+          const searchInput = document.getElementsByClassName('search-input');
+          if (searchInput.length < 1 || searchInput[0].value == "") {
+            return;
+          }
+          query = searchInput[0].value;
         }
         const params = new URLSearchParams();
-        params.append('query', query[0].value);
+        params.append('query', query);
         location.href = "produce.html?" + params.toString();
       }
     </script>
