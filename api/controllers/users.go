@@ -9,7 +9,6 @@ import (
 	"github.com/gin-gonic/gin"
 	"golang.org/x/crypto/bcrypt"
 	"net/http"
-  "log"
 )
 
 // Hashes and salts password for DB storage
@@ -60,13 +59,7 @@ func UserLogin(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "User not found"})
 		return
   }
-  hashed_password, err := HashPassword(input.Password)
-	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error:": err.Error()})
-		return
-	}
-  log.Println(hashed_password, user.Password_hash)
-  if hashed_password == user.Password_hash {
+  if err := bcrypt.CompareHashAndPassword([]byte(user.Password_hash), []byte(input.Password)); err == nil {
     c.JSON(http.StatusOK, gin.H{"access": "granted"})
   } else {
     c.JSON(http.StatusForbidden, gin.H{"access": "denied"})
