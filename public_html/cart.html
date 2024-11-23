@@ -39,16 +39,7 @@
         <h2>Checkout</h2>
 
         <section id="cart-container" class="container">
-            <div class="col-12 col-md-6">
-                <h2>Your Cart Items</h2>
-                <ul id="cart-items"></ul>
-                <div id="cart-summary">
-                    <p>Items in Cart: <span id="cart-count">0</span></p>
-                    <p>Total: $<span id="cart-total">0.00</span></p>
-                </div>
-                <button onclick="checkout()">Checkout</button>
-            </div>
-            <div class="col-12 col-md-6">
+            <div class="col-6 col-sm-12 col-md-6">
                 <form id="checkout-form" method="POST" action="api/orders/new">
                     <div>
                         <label for="name">Full Name:</label>
@@ -76,11 +67,21 @@
                     </div>
                 </form>
             </div>
+
+	    <div class="col-6 col-sm-12 col-md-6">
+                <h2>Your Cart Items</h2>
+                <ul id="cart-items"></ul>
+                <div id="cart-summary">
+                    <p>Items in Cart: <span id="cart-count">0</span></p>
+                    <p>Total: $<span id="cart-total">0.00</span></p>
+                </div>
+                <button onclick="checkout()">Checkout</button>
+            </div>
         </section>
 
     </main>
 
     <script src="static/script.js"></script>
-    <script src="static/checkout.js"></script>
+    <!--<script src="static/checkout.js"></script>-->
 </body>
 </html>

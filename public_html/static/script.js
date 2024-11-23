@@ -168,13 +168,13 @@ function checkout() {
     const city = document.getElementById('city').value;
     const state = document.getElementById('state').value;
     const zip = document.getElementById('zip').value;
-    const card = document.getElementById('card').value;
-    const expiry = document.getElementById('expiry').value;
-    const cvv = document.getElementById('cvv').value;
+    //const card = document.getElementById('card').value;
+    //const expiry = document.getElementById('expiry').value;
+    //const cvv = document.getElementById('cvv').value;
 
     // Basic validation
-    if (!name || !email || !address || !city || !state || !zip || !card || !expiry || !cvv) {
-        alert("Please fill out all required fields.");
+    if (!name || !email || !address || !city || !state || !zip) {
+        alert("Please fill out all fields.");
         return;
     }
 
@@ -185,19 +185,12 @@ function checkout() {
     // Prepare payload with user info and cart data
     const payload = {
         customer: {
-            name,
-            email,
-            address: {
-                street: address,
-                city,
-                state,
-                zip
-            }
-        },
-        payment: {
-            cardNumber: card,
-            expiry,
-            cvv
+	    name: name,
+            email: email,
+	    address: address,
+	    city: city,
+            state: state,
+            zip: zip
         },
         items: cart.map(item => ({
             product: item.id,
@@ -212,6 +205,7 @@ function checkout() {
         body: JSON.stringify(payload)
     }).then(response => {
         if (!response.ok) {
+	    console.log(response);
             throw new Error("Error placing order. Please try again.");
         }
         return response.json();
