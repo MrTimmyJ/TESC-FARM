@@ -130,8 +130,8 @@
         body: JSON.stringify(payload)
       }).then(response => {
         if (!response.ok) {
-            throw new Error("Access Denied");
             alert("Access Denied");
+            throw new Error("Access Denied");
         } else {
             location.href = "dashboard.html";
         }
