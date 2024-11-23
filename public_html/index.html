@@ -23,7 +23,7 @@
             <div class="nav-links">
                <!--Search Bar-->
                <div class="search-bar"> 
-                   <input type="search" class="search-input" placeholder="Search here..." tabindex="0">
+                   <input type="search" class="search-input" placeholder="Search here..." tabindex="0" onkeypress="search(event)">
                    <button class="search-submit" tabindex="0" onClick="search(event)">
                        <i class="fa-solid fa-magnifying-glass"></i>
                    </button>
@@ -37,7 +37,7 @@
                 </li>
               </div>
               <div class="mobile-search-bar">
-                  <input type="text" class="search-input" placeholder="Search here..." tabindex="0">
+                  <input type="text" class="search-input" placeholder="Search here..." tabindex="0" onkeypress="search(event)">
                   <button class="search-submit" tabindex="0" onClick="search(event)">
                       <i class="fa-solid fa-magnifying-glass"></i>
                   </button>
