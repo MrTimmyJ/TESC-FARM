@@ -131,6 +131,10 @@ function addToCart(e) {
     tempCart.push({"id": id, "name": name, "price": price, "quantity": 1});
     localStorage.setItem("cart", JSON.stringify(tempCart));
     cart = tempCart;
+    e.target.style.backgroundColor = "#550101";
+    setTimeout(function (){
+        e.target.style.backgroundColor = "#f27800";
+    }, 500);
 }
 
 // Update item quantity
