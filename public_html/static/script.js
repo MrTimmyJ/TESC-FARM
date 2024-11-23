@@ -164,7 +164,8 @@ function checkout() {
     // Capture user information
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
-    const address = document.getElementById('address').value;
+    const address1 = document.getElementById('address1').value;
+    const address2 = document.getElementById('address2').value;
     const city = document.getElementById('city').value;
     const state = document.getElementById('state').value;
     const zip = document.getElementById('zip').value;
@@ -173,7 +174,7 @@ function checkout() {
     //const cvv = document.getElementById('cvv').value;
 
     // Basic validation
-    if (!name || !email || !address || !city || !state || !zip) {
+    if (!name || !email || !address1 || !city || !state || !zip) {
         alert("Please fill out all fields.");
         return;
     }
@@ -184,18 +185,17 @@ function checkout() {
 
     // Prepare payload with user info and cart data
     const payload = {
-        customer: {
 	    name: name,
-            email: email,
-	    address: address,
+      email: email,
+	    address_one: address1,
+	    address_two: address1,
 	    city: city,
-            state: state,
-            zip: zip
-        },
-        items: cart.map(item => ({
-            product: item.id,
-            quantity: item.quantity
-        }))
+      state: state,
+      zip: zip,
+      items: cart.map(item => ({
+          product: item.id,
+          quantity: item.quantity
+      }))
     };
 
     // Send data to API
