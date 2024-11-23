@@ -261,7 +261,7 @@
           for (const line of order.items) {
             total += line.price * line.quantity / 100;
           }
-          amount.innerText = total;
+          amount.innerText = "$" + total;
           tr.appendChild(amount);
           const stat = document.createElement('td'); 
           stat.innerText = "Pending";
