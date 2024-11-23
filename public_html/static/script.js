@@ -131,10 +131,11 @@ function addToCart(e) {
     tempCart.push({"id": id, "name": name, "price": price, "quantity": 1});
     localStorage.setItem("cart", JSON.stringify(tempCart));
     cart = tempCart;
-    e.target.style.backgroundColor = "#550101";
+    const originalColor = e.target.style.backgroundColor;
+    e.target.style.backgroundColor = "#3f5701";
     setTimeout(function (){
-        e.target.style.backgroundColor = "#f27800";
-    }, 500);
+        e.target.style.backgroundColor = originalColor;
+    }, 300);
 }
 
 // Update item quantity
