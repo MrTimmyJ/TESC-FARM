@@ -188,12 +188,12 @@ function checkout() {
 	    name: name,
       email: email,
 	    address_one: address1,
-	    address_two: address1,
+	    address_two: address2,
 	    city: city,
       state: state,
       zip: zip,
       items: cart.map(item => ({
-          product: item.id,
+          product_id: item.id,
           quantity: item.quantity
       }))
     };
