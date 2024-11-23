@@ -253,7 +253,15 @@ window.addEventListener("load", function(){
     } else {
         cart = JSON.parse(tempCart);
     }
-
     renderCart();
     renderProduce();
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const query = urlParams.get('query');
+    if (query != "") {
+      let searchboxes = document.getElementsByClassName('search-input');
+      for (const box of searchboxes) {
+        box.value = query;
+      }
+    }
 });
