@@ -541,6 +541,7 @@ button:hover {
   height: 120px;
   margin: auto;
   animation: spin 2s linear infinite;
+  flex-basis: 100%;
 }
 
 @keyframes spin {
