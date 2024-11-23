@@ -8,23 +8,7 @@ import (
 	"net/http"
 	"time"
 )
-/*
-type CreateOrderItem struct {
-  Product  int `json:"product" binding:"required"`
-  Quantity int `json:"quantity" binding:"required"`
-}
 
-type CreateOrderInput struct {
-	Items    []CreateOrderItem  `json:"items" binding:"required"`
-	Name     string             `json:"name" binding:"required"`
-	Email    string             `json:"email" binding:"required"`
-	Address1 string             `json:"address_one" binding:"required"`
-	Address2 string             `json:"address_two"`
-	City     string             `json:"city" binding:"required"`
-	State    string             `json:"state" binding:"required"`
-	Zip      string             `json:"zip" binding:"required"`
-}
-*/
 func GetOrders(c *gin.Context) {
 	ord := new(models.OrderRequestData)
 	if c.Query("orderID") != "" {
@@ -56,22 +40,12 @@ func SearchOrders(c *gin.Context) {
 
 func CreateOrder(c *gin.Context) {
 	// Validate input
-	//var input CreateOrderInput
 	var input models.Order
 	if err := c.ShouldBindJSON(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	// Post order
-	//order := models.Order{}
-  //order.Name = input.Name
-  //order.Email = input.Email
-  //order.Address1 = input.Address1
-  //order.Address2 = input.Address2
-  //order.City = input.City
-  //order.State = input.State
-  //order.Zip = input.Zip
   for _, item := range input.Items {
     item.Product = models.Product{}
     models.DB.First(&item.Product, item.ProductID)

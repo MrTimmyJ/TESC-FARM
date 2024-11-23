@@ -94,9 +94,11 @@
     background-color: #3a3a3a;
     border-radius: 50%;
     border: none;
-    width: calc(var(--size) - var(--padding) - var(--padding));
+    /*width: calc(var(--size) - var(--padding) - var(--padding));*/
     aspect-ratio: 1;
     cursor: pointer;
+    margin: auto;
+    margin-right: 8px;
   }
 
 /**********************************************************Home Page*********************************************************/
@@ -372,6 +374,9 @@ body {
 
 /*********************************************************** Cart Page *****************************************************************/
 #cart-container {
+    padding: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
     position: relative;
     display: flex;
     flex-direction: row;
@@ -432,11 +437,6 @@ button:hover {
 }
 
 /* Main Content */
-main {
-    padding: 2rem;
-    max-width: 900px;
-    margin: 0 auto;
-}
 main h2 {
     color: #007bff;
     border-bottom: 2px solid #007bff;

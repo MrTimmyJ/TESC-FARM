@@ -28,8 +28,14 @@ function renderProduce() {
     }
 
     let grid = grids[0];
-
-    fetch(`${api}/products`, {
+    let endpoint = `${api}/products`
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const query = urlParams.get('query');
+    if (query != "") {
+      endpoint += '/search' + queryString;
+    }
+    fetch(endpoint, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     }).then(response => {

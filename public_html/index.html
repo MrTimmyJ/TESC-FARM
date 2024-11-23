@@ -24,7 +24,7 @@
                <!--Search Bar-->
                <div class="search-bar"> 
                    <input type="search" class="search-input" placeholder="Search here..." tabindex="0">
-                   <button class="search-submit" tabindex="0">
+                   <button class="search-submit" tabindex="0" onClick="search()">
                        <i class="fa-solid fa-magnifying-glass"></i>
                    </button>
                 </div>
@@ -89,5 +89,16 @@
             <a href="contact.html" class="bottom">Contact Us</a>
         </div>
     </footer>
+    <script>
+      function search() {
+        const query = document.getElementsByClassName('search-input');
+        if (query.length < 1) {
+          return;
+        }
+        const params = new URLSearchParams();
+        params.append('query', query[0].value);
+        location.href = "produce.html" + params.toString();
+      }
+    </script>
 </body>
 </html>
