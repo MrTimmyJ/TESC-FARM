@@ -96,6 +96,7 @@ function renderProduce() {
         }
         const loader = grid.previousElementSibling;
         loader.classList.add('hidden');
+        grid.classList.remove('hidden');
     }).catch(error => {
         console.error('Error:', error);
         alert(error.message);
