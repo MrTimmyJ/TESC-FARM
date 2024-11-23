@@ -93,7 +93,7 @@
 
       <!-- Password Input -->
       <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" onkeypress="login(event)">
         <label for="floatingPassword">Password</label>
       </div>
 
@@ -118,6 +118,9 @@
   <script>
     function login(e) {
       e.preventDefault();
+      if (e.target.tagName == "INPUT" && e.keyCode != 13) {
+        return;
+      }
       const email = document.getElementById('floatingInput').value;
       const password = document.getElementById('floatingPassword').value;
       const payload = {

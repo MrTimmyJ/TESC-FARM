@@ -217,7 +217,7 @@ function checkout() {
         }
         return response.json();
     }).then(data => {
-        alert(`Order placed successfully! Order ID: ${data.orderId}`);
+        alert(`Order placed successfully!`);
         cart = []; // Clear the cart on success
         localStorage.setItem("cart", JSON.stringify(cart));
         renderCart();
