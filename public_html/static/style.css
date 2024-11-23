@@ -69,7 +69,7 @@
     outline: 1px solid #2e2e2e;
   }
   
-  .search-input {
+  .search-bar .search-input {
     font-size: 18px;
     color: #3a3a3a;
     background-color: transparent;
@@ -717,10 +717,25 @@ input[type=submit]:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.mobile-search-bar {
+  display: none;
+  text-align: right;
+}
+.mobile-search-bar .search-input {
+  width: auto;
+}
+.mobile-search-bar .search-submit {
+  display: inline;
+}
+
 /* Mobile Styles */
 @media screen and (max-width: 1250px) {
     .search-bar {
       display: none;
+    }
+    .mobile-search-bar {
+      display: block;
+      flex-basis: 100%;
     }
     .contactimage {
       width: 100%;
@@ -777,6 +792,9 @@ input[type=submit]:hover {
     }
     #cart-container .col-6 {
         width: 100%;
+    }
+    .mobile-search-bar {
+        text-align: center;
     }
 }
 @media screen and (max-width: 360px) {

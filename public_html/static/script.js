@@ -226,17 +226,22 @@ function checkout() {
         alert(error.message);
     });
 }
-function search(query) {
-        if (!query) {
-          const searchInput = document.getElementsByClassName('search-input');
-          if (searchInput.length < 1 || searchInput[0].value == "") {
-            return;
-          }
-          query = searchInput[0].value;
-        }
-        const params = new URLSearchParams();
-        params.append('query', query);
-        location.href = "produce.html?" + params.toString();
+
+function search(e, query) {
+    if (!query) {
+      let el = e.target;
+      if (el.tagName == "i") {
+        el = el.parentElement;
+      }
+      const searchInput = el.previousElementSibling;
+      query = searchInput.value;
+    }
+    if (query == "") {
+      return;
+    }
+    const params = new URLSearchParams();
+    params.append('query', query);
+    location.href = "produce.html?" + params.toString();
 }
 
 // Initialize cart on page load
