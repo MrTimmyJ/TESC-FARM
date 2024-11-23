@@ -81,7 +81,7 @@ function renderProduce() {
             const prod_id = document.createElement("input");
             prod_id.type = "hidden";
             prod_id.name = "prod_id";
-            prod_id.value = product.id;
+            prod_id.value = product.ID;
             card_checkout.appendChild(prod_id);
 
             const prod_button = document.createElement("button");
