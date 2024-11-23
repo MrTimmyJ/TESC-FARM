@@ -385,7 +385,7 @@ body {
     flex-wrap: wrap;
 }
 #cart-container .col-6 {
-    width: 49%;
+    width: 48%;
 }
 #cart-container .col-12 {
     width: 100%;
@@ -553,6 +553,9 @@ button:hover {
     .search-bar {
       display: none;
     }
+    .contactimage {
+      width: 100%;
+    }
 }
 @media screen and (max-width: 768px) {
     .sgrid .seasonal {
@@ -596,6 +599,9 @@ button:hover {
 @media screen and (max-width: 600px) {
     .nav-links {
         margin: auto;
+    }
+    .nav-links a {
+      font-size: 18px;
     }
     .logo {
         margin: auto;
@@ -704,10 +710,10 @@ button:hover {
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap;
 }
 
 .contact-form {
-    width: 50%;
     max-width: 600px;
     padding: 20px;
     background: #ffffff;
