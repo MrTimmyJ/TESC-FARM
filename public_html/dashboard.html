@@ -250,7 +250,7 @@
         for (let i = 6; i >= 0; i--) {
           const d = new Date();
           d.setDate(today.getDate() - i);
-          weekChart[d.toISOString().slice(0,10)] = 0;
+          weekChart[d.toISOString().slice(5,10)] = 0;
         }
         let saleTotal = 0;
         let orderNum = 0;
@@ -278,7 +278,7 @@
           tbody.appendChild(tr);
           saleTotal += total;
           orderNum++;
-          datestr = order.CreatedAt.slice(0,10);
+          datestr = order.CreatedAt.slice(5,10);
           if (datestr in weekChart) {
             weekChart[datestr] += total;
           }
