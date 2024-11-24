@@ -146,7 +146,7 @@
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">Total Sales</h5>
-                <p class="card-text">$23,567</p>
+                <p class="card-text" id="total-sales">$23,567</p>
               </div>
             </div>
           </div>
@@ -154,23 +154,23 @@
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">Orders</h5>
-                <p class="card-text">87</p>
+                <p class="card-text" id="order-count">87</p>
               </div>
             </div>
           </div>
           <div class="col-md-6 col-lg-3">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Users</h5>
-                <p class="card-text">56</p>
+                <h5 class="card-title">Items Sold</h5>
+                <p class="card-text" id="item-count">56</p>
               </div>
             </div>
           </div>
           <div class="col-md-6 col-lg-3">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Support Tickets</h5>
-                <p class="card-text">12</p>
+                <h5 class="card-title">Developers</h5>
+                <p class="card-text">7</p>
               </div>
             </div>
           </div>
@@ -209,16 +209,14 @@
 
   <script>
     /* Chart.js configuration */
-    (() => {
-      'use strict'
-
+    function chartdata(labels, data) {
       const ctx = document.getElementById('myChart');
       const myChart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+          labels: labels,
           datasets: [{
-            data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
+            data: data,
             lineTension: 0,
             backgroundColor: 'transparent',
             borderColor: '#007bff',
@@ -237,7 +235,7 @@
           }
         }
       });
-    })();
+    }
     fetch('https://www.tesc.farm/api/orders', {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
@@ -247,6 +245,15 @@
         }
         return response.json();
     }).then(data => {
+        let weekChart = {};
+        for (let i = 6; i >= 0; i--) {
+          const d = new Date();
+          d.setDate(today.getDate() - i);
+          weekChart[d.toISOString().slice(0,10)] = 0;
+        }
+        let saleTotal = 0;
+        let orderNum = 0;
+        let itemNum = 0;
         const tbody = document.getElementById('recent-orders');
         for (const order of data.Orders) {
           const tr = document.createElement('tr');
@@ -260,6 +267,7 @@
           let total = 0;
           for (const line of order.items) {
             total += line.price * line.quantity / 100;
+            itemNum += line.quantity;
           }
           amount.innerText = "$" + total.toFixed(2);
           tr.appendChild(amount);
@@ -267,7 +275,17 @@
           stat.innerText = "Pending";
           tr.appendChild(stat);
           tbody.appendChild(tr);
+          saleTotal += total;
+          orderNum++;
+          datestr = data.CreatedAt.slice(0,10);
+          if (datestr in weekChart) {
+            weekChart[datestr] += total;
+          }
         }
+        document.getElementById('total-sales').innerText = '$' + saleTotal.toFixed(2);
+        document.getElementById('order-count').innerText = orderNum;
+        document.getElementById('item-count').innerText = itemNum;
+        chartdata(Object.keys(weekChart), Object.values(weekChart));
     }).catch(error => {
         console.error('Error:', error);
         alert(error.message);
