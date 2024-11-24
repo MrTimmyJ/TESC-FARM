@@ -278,8 +278,7 @@
           tbody.appendChild(tr);
           saleTotal += total;
           orderNum++;
-          console.log(data.CreatedAt);
-          datestr = data.CreatedAt.slice(0,10);
+          datestr = order.CreatedAt.slice(0,10);
           if (datestr in weekChart) {
             weekChart[datestr] += total;
           }
