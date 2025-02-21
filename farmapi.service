@@ -14,7 +14,6 @@ SyslogIdentifier=farmapi
 User=timothy
 Group=www-data
 EnvironmentFile=/etc/environment
-Environment="GOROOT=/home/timothy/go"
 Environment="GIN_MODE=release"
 
 [Install]
