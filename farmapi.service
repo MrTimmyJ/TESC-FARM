@@ -4,8 +4,8 @@ Wants=network-online.target
 After=network.target network-online.target
 
 [Service]
-WorkingDirectory=/home/timothy/code/TESCSE-Ecom/api
-ExecStart=/home/timothy/code/TESCSE-Ecom/api/api
+WorkingDirectory=/home/timothy/code/TESC-FARM/api
+ExecStart=/home/timothy/code/TESC-FARM/api/api
 Restart=always
 RestartSec=10
 StandardOutput=journal
