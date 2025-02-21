@@ -4,17 +4,17 @@ Wants=network-online.target
 After=network.target network-online.target
 
 [Service]
-WorkingDirectory=/home/shawn/bitbucket/TESCSE-Ecom/api
-ExecStart=/home/shawn/bitbucket/TESCSE-Ecom/api/api
+WorkingDirectory=/home/timothy/code/TESCSE-Ecom/api
+ExecStart=/home/timothy/code/TESCSE-Ecom/api/api
 Restart=always
 RestartSec=10
 StandardOutput=journal
 StandardError=journal
 SyslogIdentifier=farmapi
-User=shawn
+User=timothy
 Group=www-data
 EnvironmentFile=/etc/environment
-Environment="GOROOT=/home/shawn/go"
+Environment="GOROOT=/home/timothy/go"
 Environment="GIN_MODE=release"
 
 [Install]
